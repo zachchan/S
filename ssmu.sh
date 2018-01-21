@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+ï»¿#!/usr/bin/env bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 
@@ -27,13 +27,13 @@ BBR_file="${file}/bbr.sh"
 jq_file="${ssr_folder}/jq"
 
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
-Info="${Green_font_prefix}[ĞÅÏ¢]${Font_color_suffix}"
-Error="${Red_font_prefix}[´íÎó]${Font_color_suffix}"
-Tip="${Green_font_prefix}[×¢Òâ]${Font_color_suffix}"
-Separator_1="¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª"
+Info="${Green_font_prefix}[ä¿¡æ¯]${Font_color_suffix}"
+Error="${Red_font_prefix}[é”™è¯¯]${Font_color_suffix}"
+Tip="${Green_font_prefix}[æ³¨æ„]${Font_color_suffix}"
+Separator_1="â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”"
 
 check_root(){
-	[[ $EUID != 0 ]] && echo -e "${Error} µ±Ç°ÕËºÅ·ÇROOT(»òÃ»ÓĞROOTÈ¨ÏŞ)£¬ÎŞ·¨¼ÌĞø²Ù×÷£¬ÇëÊ¹ÓÃ${Green_background_prefix} sudo su ${Font_color_suffix}À´»ñÈ¡ÁÙÊ±ROOTÈ¨ÏŞ£¨Ö´ĞĞºó»áÌáÊ¾ÊäÈëµ±Ç°ÕËºÅµÄÃÜÂë£©¡£" && exit 1
+	[[ $EUID != 0 ]] && echo -e "${Error} å½“å‰è´¦å·éROOT(æˆ–æ²¡æœ‰ROOTæƒé™)ï¼Œæ— æ³•ç»§ç»­æ“ä½œï¼Œè¯·ä½¿ç”¨${Green_background_prefix} sudo su ${Font_color_suffix}æ¥è·å–ä¸´æ—¶ROOTæƒé™ï¼ˆæ‰§è¡Œåä¼šæç¤ºè¾“å…¥å½“å‰è´¦å·çš„å¯†ç ï¼‰ã€‚" && exit 1
 }
 check_sys(){
 	if [[ -f /etc/redhat-release ]]; then
@@ -57,30 +57,30 @@ check_pid(){
 	PID=`ps -ef |grep -v grep | grep server.py |awk '{print $2}'`
 }
 check_crontab(){
-	[[ ! -e "/usr/bin/crontab" ]] && echo -e "${Error} È±ÉÙÒÀÀµ Crontab £¬Çë³¢ÊÔÊÖ¶¯°²×° CentOS: yum install crond -y , Debian/Ubuntu: apt-get install cron -y !" && exit 1
+	[[ ! -e "/usr/bin/crontab" ]] && echo -e "${Error} ç¼ºå°‘ä¾èµ– Crontab ï¼Œè¯·å°è¯•æ‰‹åŠ¨å®‰è£… CentOS: yum install crond -y , Debian/Ubuntu: apt-get install cron -y !" && exit 1
 }
 SSR_installation_status(){
-	[[ ! -e ${ssr_folder} ]] && echo -e "${Error} Ã»ÓĞ·¢ÏÖ ShadowsocksR ÎÄ¼ş¼Ğ£¬Çë¼ì²é !" && exit 1
+	[[ ! -e ${ssr_folder} ]] && echo -e "${Error} æ²¡æœ‰å‘ç° ShadowsocksR æ–‡ä»¶å¤¹ï¼Œè¯·æ£€æŸ¥ !" && exit 1
 }
 Server_Speeder_installation_status(){
-	[[ ! -e ${Server_Speeder_file} ]] && echo -e "${Error} Ã»ÓĞ°²×° ÈñËÙ(Server Speeder)£¬Çë¼ì²é !" && exit 1
+	[[ ! -e ${Server_Speeder_file} ]] && echo -e "${Error} æ²¡æœ‰å®‰è£… é”é€Ÿ(Server Speeder)ï¼Œè¯·æ£€æŸ¥ !" && exit 1
 }
 LotServer_installation_status(){
-	[[ ! -e ${LotServer_file} ]] && echo -e "${Error} Ã»ÓĞ°²×° LotServer£¬Çë¼ì²é !" && exit 1
+	[[ ! -e ${LotServer_file} ]] && echo -e "${Error} æ²¡æœ‰å®‰è£… LotServerï¼Œè¯·æ£€æŸ¥ !" && exit 1
 }
 BBR_installation_status(){
 	if [[ ! -e ${BBR_file} ]]; then
-		echo -e "${Error} Ã»ÓĞ·¢ÏÖ BBR½Å±¾£¬¿ªÊ¼ÏÂÔØ..."
+		echo -e "${Error} æ²¡æœ‰å‘ç° BBRè„šæœ¬ï¼Œå¼€å§‹ä¸‹è½½..."
 		cd "${file}"
 		if ! wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/bbr.sh; then
-			echo -e "${Error} BBR ½Å±¾ÏÂÔØÊ§°Ü !" && exit 1
+			echo -e "${Error} BBR è„šæœ¬ä¸‹è½½å¤±è´¥ !" && exit 1
 		else
-			echo -e "${Info} BBR ½Å±¾ÏÂÔØÍê³É !"
+			echo -e "${Info} BBR è„šæœ¬ä¸‹è½½å®Œæˆ !"
 			chmod +x bbr.sh
 		fi
 	fi
 }
-# ÉèÖÃ ·À»ğÇ½¹æÔò
+# è®¾ç½® é˜²ç«å¢™è§„åˆ™
 Add_iptables(){
 	if [[ ! -z "${ssr_port}" ]]; then
 		iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport ${ssr_port} -j ACCEPT
@@ -119,7 +119,7 @@ Set_iptables(){
 		chmod +x /etc/network/if-pre-up.d/iptables
 	fi
 }
-# ¶ÁÈ¡ ÅäÖÃĞÅÏ¢
+# è¯»å– é…ç½®ä¿¡æ¯
 Get_IP(){
 	ip=$(wget -qO- -t1 -T2 ipinfo.io/ip)
 	if [[ -z "${ip}" ]]; then
@@ -137,7 +137,7 @@ Get_User_info(){
 	user_info_get=$(python mujson_mgr.py -l -p "${Get_user_port}")
 	match_info=$(echo "${user_info_get}"|grep -w "### user ")
 	if [[ -z "${match_info}" ]]; then
-		echo -e "${Error} ÓÃ»§ĞÅÏ¢»ñÈ¡Ê§°Ü ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} " && exit 1
+		echo -e "${Error} ç”¨æˆ·ä¿¡æ¯è·å–å¤±è´¥ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} " && exit 1
 	fi
 	user_name=$(echo "${user_info_get}"|grep -w "user :"|awk -F "user : " '{print $NF}')
 	port=$(echo "${user_info_get}"|grep -w "port :"|sed 's/[[:space:]]//g'|awk -F ":" '{print $NF}')
@@ -145,13 +145,13 @@ Get_User_info(){
 	method=$(echo "${user_info_get}"|grep -w "method :"|sed 's/[[:space:]]//g'|awk -F ":" '{print $NF}')
 	protocol=$(echo "${user_info_get}"|grep -w "protocol :"|sed 's/[[:space:]]//g'|awk -F ":" '{print $NF}')
 	protocol_param=$(echo "${user_info_get}"|grep -w "protocol_param :"|sed 's/[[:space:]]//g'|awk -F ":" '{print $NF}')
-	[[ -z ${protocol_param} ]] && protocol_param="0(ÎŞÏŞ)"
+	[[ -z ${protocol_param} ]] && protocol_param="0(æ— é™)"
 	obfs=$(echo "${user_info_get}"|grep -w "obfs :"|sed 's/[[:space:]]//g'|awk -F ":" '{print $NF}')
 	#transfer_enable=$(echo "${user_info_get}"|grep -w "transfer_enable :"|sed 's/[[:space:]]//g'|awk -F ":" '{print $NF}'|awk -F "ytes" '{print $1}'|sed 's/KB/ KB/;s/MB/ MB/;s/GB/ GB/;s/TB/ TB/;s/PB/ PB/')
 	#u=$(echo "${user_info_get}"|grep -w "u :"|sed 's/[[:space:]]//g'|awk -F ":" '{print $NF}')
 	#d=$(echo "${user_info_get}"|grep -w "d :"|sed 's/[[:space:]]//g'|awk -F ":" '{print $NF}')
 	forbidden_port=$(echo "${user_info_get}"|grep -w "forbidden_port :"|sed 's/[[:space:]]//g'|awk -F ":" '{print $NF}')
-	[[ -z ${forbidden_port} ]] && forbidden_port="ÎŞÏŞÖÆ"
+	[[ -z ${forbidden_port} ]] && forbidden_port="æ— é™åˆ¶"
 	speed_limit_per_con=$(echo "${user_info_get}"|grep -w "speed_limit_per_con :"|sed 's/[[:space:]]//g'|awk -F ":" '{print $NF}')
 	speed_limit_per_user=$(echo "${user_info_get}"|grep -w "speed_limit_per_user :"|sed 's/[[:space:]]//g'|awk -F ":" '{print $NF}')
 	Get_User_transfer "${port}"
@@ -283,7 +283,7 @@ ss_link_qr(){
 	SSbase64=$(urlsafe_base64 "${method}:${password}@${ip}:${port}")
 	SSurl="ss://${SSbase64}"
 	SSQRcode="http://doub.pw/qr/qr.php?text=${SSurl}"
-	ss_link=" SS    Á´½Ó : ${Green_font_prefix}${SSurl}${Font_color_suffix} \n SS  ¶şÎ¬Âë : ${Green_font_prefix}${SSQRcode}${Font_color_suffix}"
+	ss_link=" SS    é“¾æ¥ : ${Green_font_prefix}${SSurl}${Font_color_suffix} \n SS  äºŒç»´ç  : ${Green_font_prefix}${SSQRcode}${Font_color_suffix}"
 }
 ssr_link_qr(){
 	SSRprotocol=$(echo ${protocol} | sed 's/_compatible//g')
@@ -292,7 +292,7 @@ ssr_link_qr(){
 	SSRbase64=$(urlsafe_base64 "${ip}:${port}:${SSRprotocol}:${method}:${SSRobfs}:${SSRPWDbase64}")
 	SSRurl="ssr://${SSRbase64}"
 	SSRQRcode="http://doub.pw/qr/qr.php?text=${SSRurl}"
-	ssr_link=" SSR   Á´½Ó : ${Red_font_prefix}${SSRurl}${Font_color_suffix} \n SSR ¶şÎ¬Âë : ${Red_font_prefix}${SSRQRcode}${Font_color_suffix} \n "
+	ssr_link=" SSR   é“¾æ¥ : ${Red_font_prefix}${SSRurl}${Font_color_suffix} \n SSR äºŒç»´ç  : ${Red_font_prefix}${SSRQRcode}${Font_color_suffix} \n "
 }
 ss_ssr_determine(){
 	protocol_suffix=`echo ${protocol} | awk -F "_" '{print $NF}'`
@@ -325,22 +325,22 @@ ss_ssr_determine(){
 	fi
 	ssr_link_qr
 }
-# ÏÔÊ¾ ÅäÖÃĞÅÏ¢
+# æ˜¾ç¤º é…ç½®ä¿¡æ¯
 View_User(){
 	SSR_installation_status
 	List_port_user
 	while true
 	do
-		echo -e "ÇëÊäÈëÒª²é¿´ÕËºÅĞÅÏ¢µÄÓÃ»§ ¶Ë¿Ú"
-		stty erase '^H' && read -p "(Ä¬ÈÏ: È¡Ïû):" View_user_port
-		[[ -z "${View_user_port}" ]] && echo -e "ÒÑÈ¡Ïû..." && exit 1
+		echo -e "è¯·è¾“å…¥è¦æŸ¥çœ‹è´¦å·ä¿¡æ¯çš„ç”¨æˆ· ç«¯å£"
+		stty erase '^H' && read -p "(é»˜è®¤: å–æ¶ˆ):" View_user_port
+		[[ -z "${View_user_port}" ]] && echo -e "å·²å–æ¶ˆ..." && exit 1
 		View_user=$(cat "${config_user_mudb_file}"|grep '"port": '"${View_user_port}"',')
 		if [[ ! -z ${View_user} ]]; then
 			Get_User_info "${View_user_port}"
 			View_User_info
 			break
 		else
-			echo -e "${Error} ÇëÊäÈëÕıÈ·µÄ¶Ë¿Ú !"
+			echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„ç«¯å£ !"
 		fi
 	done
 }
@@ -349,64 +349,64 @@ View_User_info(){
 	[[ -z "${ip}" ]] && Get_IP
 	ss_ssr_determine
 	clear && echo "===================================================" && echo
-	echo -e " ÓÃ»§ [${user_name}] µÄÅäÖÃĞÅÏ¢£º" && echo
+	echo -e " ç”¨æˆ· [${user_name}] çš„é…ç½®ä¿¡æ¯ï¼š" && echo
 	echo -e " I  P\t    : ${Green_font_prefix}${ip}${Font_color_suffix}"
-	echo -e " ¶Ë¿Ú\t    : ${Green_font_prefix}${port}${Font_color_suffix}"
-	echo -e " ÃÜÂë\t    : ${Green_font_prefix}${password}${Font_color_suffix}"
-	echo -e " ¼ÓÃÜ\t    : ${Green_font_prefix}${method}${Font_color_suffix}"
-	echo -e " Ğ­Òé\t    : ${Red_font_prefix}${protocol}${Font_color_suffix}"
-	echo -e " »ìÏı\t    : ${Red_font_prefix}${obfs}${Font_color_suffix}"
-	echo -e " Éè±¸ÊıÏŞÖÆ : ${Green_font_prefix}${protocol_param}${Font_color_suffix}"
-	echo -e " µ¥Ïß³ÌÏŞËÙ : ${Green_font_prefix}${speed_limit_per_con} KB/S${Font_color_suffix}"
-	echo -e " ÓÃ»§×ÜÏŞËÙ : ${Green_font_prefix}${speed_limit_per_user} KB/S${Font_color_suffix}"
-	echo -e " ½ûÖ¹µÄ¶Ë¿Ú : ${Green_font_prefix}${forbidden_port} ${Font_color_suffix}"
+	echo -e " ç«¯å£\t    : ${Green_font_prefix}${port}${Font_color_suffix}"
+	echo -e " å¯†ç \t    : ${Green_font_prefix}${password}${Font_color_suffix}"
+	echo -e " åŠ å¯†\t    : ${Green_font_prefix}${method}${Font_color_suffix}"
+	echo -e " åè®®\t    : ${Red_font_prefix}${protocol}${Font_color_suffix}"
+	echo -e " æ··æ·†\t    : ${Red_font_prefix}${obfs}${Font_color_suffix}"
+	echo -e " è®¾å¤‡æ•°é™åˆ¶ : ${Green_font_prefix}${protocol_param}${Font_color_suffix}"
+	echo -e " å•çº¿ç¨‹é™é€Ÿ : ${Green_font_prefix}${speed_limit_per_con} KB/S${Font_color_suffix}"
+	echo -e " ç”¨æˆ·æ€»é™é€Ÿ : ${Green_font_prefix}${speed_limit_per_user} KB/S${Font_color_suffix}"
+	echo -e " ç¦æ­¢çš„ç«¯å£ : ${Green_font_prefix}${forbidden_port} ${Font_color_suffix}"
 	echo
-	echo -e " ÒÑÊ¹ÓÃÁ÷Á¿ : ÉÏ´«: ${Green_font_prefix}${u}${Font_color_suffix} + ÏÂÔØ: ${Green_font_prefix}${d}${Font_color_suffix} = ${Green_font_prefix}${transfer_enable_Used_2}${Font_color_suffix}"
-	echo -e " Ê£ÓàµÄÁ÷Á¿ : ${Green_font_prefix}${transfer_enable_Used} ${Font_color_suffix}"
-	echo -e " ÓÃ»§×ÜÁ÷Á¿ : ${Green_font_prefix}${transfer_enable} ${Font_color_suffix}"
+	echo -e " å·²ä½¿ç”¨æµé‡ : ä¸Šä¼ : ${Green_font_prefix}${u}${Font_color_suffix} + ä¸‹è½½: ${Green_font_prefix}${d}${Font_color_suffix} = ${Green_font_prefix}${transfer_enable_Used_2}${Font_color_suffix}"
+	echo -e " å‰©ä½™çš„æµé‡ : ${Green_font_prefix}${transfer_enable_Used} ${Font_color_suffix}"
+	echo -e " ç”¨æˆ·æ€»æµé‡ : ${Green_font_prefix}${transfer_enable} ${Font_color_suffix}"
 	echo -e "${ss_link}"
 	echo -e "${ssr_link}"
-	echo -e " ${Green_font_prefix} ÌáÊ¾: ${Font_color_suffix}
- ÔÚä¯ÀÀÆ÷ÖĞ£¬´ò¿ª¶şÎ¬ÂëÁ´½Ó£¬¾Í¿ÉÒÔ¿´µ½¶şÎ¬ÂëÍ¼Æ¬¡£
- Ğ­ÒéºÍ»ìÏıºóÃæµÄ[ _compatible ]£¬Ö¸µÄÊÇ ¼æÈİÔ­°æĞ­Òé/»ìÏı¡£"
+	echo -e " ${Green_font_prefix} æç¤º: ${Font_color_suffix}
+ åœ¨æµè§ˆå™¨ä¸­ï¼Œæ‰“å¼€äºŒç»´ç é“¾æ¥ï¼Œå°±å¯ä»¥çœ‹åˆ°äºŒç»´ç å›¾ç‰‡ã€‚
+ åè®®å’Œæ··æ·†åé¢çš„[ _compatible ]ï¼ŒæŒ‡çš„æ˜¯ å…¼å®¹åŸç‰ˆåè®®/æ··æ·†ã€‚"
 	echo && echo "==================================================="
 }
-# ÉèÖÃ ÅäÖÃĞÅÏ¢
+# è®¾ç½® é…ç½®ä¿¡æ¯
 Set_config_user(){
-	echo "ÇëÊäÈëÒªÉèÖÃµÄÓÃ»§ ÓÃ»§Ãû(ÇëÎğÖØ¸´, ÓÃÓÚÇø·Ö, ²»Ö§³ÖÖĞÎÄ, »á±¨´í !)"
-	stty erase '^H' && read -p "(Ä¬ÈÏ: doubi):" ssr_user
+	echo "è¯·è¾“å…¥è¦è®¾ç½®çš„ç”¨æˆ· ç”¨æˆ·å(è¯·å‹¿é‡å¤, ç”¨äºåŒºåˆ†, ä¸æ”¯æŒä¸­æ–‡, ä¼šæŠ¥é”™ !)"
+	stty erase '^H' && read -p "(é»˜è®¤: doubi):" ssr_user
 	[[ -z "${ssr_user}" ]] && ssr_user="doubi"
-	echo && echo ${Separator_1} && echo -e "	ÓÃ»§Ãû : ${Green_font_prefix}${ssr_user}${Font_color_suffix}" && echo ${Separator_1} && echo
+	echo && echo ${Separator_1} && echo -e "	ç”¨æˆ·å : ${Green_font_prefix}${ssr_user}${Font_color_suffix}" && echo ${Separator_1} && echo
 }
 Set_config_port(){
 	while true
 	do
-	echo -e "ÇëÊäÈëÒªÉèÖÃµÄÓÃ»§ ¶Ë¿Ú(ÇëÎğÖØ¸´, ÓÃÓÚÇø·Ö)"
-	stty erase '^H' && read -p "(Ä¬ÈÏ: 2333):" ssr_port
+	echo -e "è¯·è¾“å…¥è¦è®¾ç½®çš„ç”¨æˆ· ç«¯å£(è¯·å‹¿é‡å¤, ç”¨äºåŒºåˆ†)"
+	stty erase '^H' && read -p "(é»˜è®¤: 2333):" ssr_port
 	[[ -z "$ssr_port" ]] && ssr_port="2333"
 	expr ${ssr_port} + 0 &>/dev/null
 	if [[ $? == 0 ]]; then
 		if [[ ${ssr_port} -ge 1 ]] && [[ ${ssr_port} -le 65535 ]]; then
-			echo && echo ${Separator_1} && echo -e "	¶Ë¿Ú : ${Green_font_prefix}${ssr_port}${Font_color_suffix}" && echo ${Separator_1} && echo
+			echo && echo ${Separator_1} && echo -e "	ç«¯å£ : ${Green_font_prefix}${ssr_port}${Font_color_suffix}" && echo ${Separator_1} && echo
 			break
 		else
-			echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-65535)"
+			echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-65535)"
 		fi
 	else
-		echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-65535)"
+		echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-65535)"
 	fi
 	done
 }
 Set_config_password(){
-	echo "ÇëÊäÈëÒªÉèÖÃµÄÓÃ»§ ÃÜÂë"
-	stty erase '^H' && read -p "(Ä¬ÈÏ: doub.io):" ssr_password
+	echo "è¯·è¾“å…¥è¦è®¾ç½®çš„ç”¨æˆ· å¯†ç "
+	stty erase '^H' && read -p "(é»˜è®¤: doub.io):" ssr_password
 	[[ -z "${ssr_password}" ]] && ssr_password="doub.io"
-	echo && echo ${Separator_1} && echo -e "	ÃÜÂë : ${Green_font_prefix}${ssr_password}${Font_color_suffix}" && echo ${Separator_1} && echo
+	echo && echo ${Separator_1} && echo -e "	å¯†ç  : ${Green_font_prefix}${ssr_password}${Font_color_suffix}" && echo ${Separator_1} && echo
 }
 Set_config_method(){
-	echo -e "ÇëÑ¡ÔñÒªÉèÖÃµÄÓÃ»§ ¼ÓÃÜ·½Ê½
+	echo -e "è¯·é€‰æ‹©è¦è®¾ç½®çš„ç”¨æˆ· åŠ å¯†æ–¹å¼
  ${Green_font_prefix} 1.${Font_color_suffix} none
- ${Tip} Èç¹ûÊ¹ÓÃ auth_chain_* ÏµÁĞĞ­Òé£¬½¨Òé¼ÓÃÜ·½Ê½Ñ¡Ôñ none (¸ÃÏµÁĞĞ­Òé×Ô´ø RC4 ¼ÓÃÜ)£¬»ìÏıËæÒâ
+ ${Tip} å¦‚æœä½¿ç”¨ auth_chain_* ç³»åˆ—åè®®ï¼Œå»ºè®®åŠ å¯†æ–¹å¼é€‰æ‹© none (è¯¥ç³»åˆ—åè®®è‡ªå¸¦ RC4 åŠ å¯†)ï¼Œæ··æ·†éšæ„
  
  ${Green_font_prefix} 2.${Font_color_suffix} rc4
  ${Green_font_prefix} 3.${Font_color_suffix} rc4-md5
@@ -427,8 +427,8 @@ Set_config_method(){
  ${Green_font_prefix}14.${Font_color_suffix} salsa20
  ${Green_font_prefix}15.${Font_color_suffix} chacha20
  ${Green_font_prefix}16.${Font_color_suffix} chacha20-ietf
- ${Tip} salsa20/chacha20-*ÏµÁĞ¼ÓÃÜ·½Ê½£¬ĞèÒª¶îÍâ°²×°ÒÀÀµ libsodium £¬·ñÔò»áÎŞ·¨Æô¶¯ShadowsocksR !" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: 5. aes-128-ctr):" ssr_method
+ ${Tip} salsa20/chacha20-*ç³»åˆ—åŠ å¯†æ–¹å¼ï¼Œéœ€è¦é¢å¤–å®‰è£…ä¾èµ– libsodium ï¼Œå¦åˆ™ä¼šæ— æ³•å¯åŠ¨ShadowsocksR !" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: 5. aes-128-ctr):" ssr_method
 	[[ -z "${ssr_method}" ]] && ssr_method="5"
 	if [[ ${ssr_method} == "1" ]]; then
 		ssr_method="none"
@@ -465,18 +465,18 @@ Set_config_method(){
 	else
 		ssr_method="aes-128-ctr"
 	fi
-	echo && echo ${Separator_1} && echo -e "	¼ÓÃÜ : ${Green_font_prefix}${ssr_method}${Font_color_suffix}" && echo ${Separator_1} && echo
+	echo && echo ${Separator_1} && echo -e "	åŠ å¯† : ${Green_font_prefix}${ssr_method}${Font_color_suffix}" && echo ${Separator_1} && echo
 }
 Set_config_protocol(){
-	echo -e "ÇëÑ¡ÔñÒªÉèÖÃµÄÓÃ»§ Ğ­Òé²å¼ş
+	echo -e "è¯·é€‰æ‹©è¦è®¾ç½®çš„ç”¨æˆ· åè®®æ’ä»¶
  ${Green_font_prefix}1.${Font_color_suffix} origin
  ${Green_font_prefix}2.${Font_color_suffix} auth_sha1_v4
  ${Green_font_prefix}3.${Font_color_suffix} auth_aes128_md5
  ${Green_font_prefix}4.${Font_color_suffix} auth_aes128_sha1
  ${Green_font_prefix}5.${Font_color_suffix} auth_chain_a
  ${Green_font_prefix}6.${Font_color_suffix} auth_chain_b
- ${Tip} Èç¹ûÊ¹ÓÃ auth_chain_* ÏµÁĞĞ­Òé£¬½¨Òé¼ÓÃÜ·½Ê½Ñ¡Ôñ none (¸ÃÏµÁĞĞ­Òé×Ô´ø RC4 ¼ÓÃÜ)£¬»ìÏıËæÒâ" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: 3. auth_aes128_md5):" ssr_protocol
+ ${Tip} å¦‚æœä½¿ç”¨ auth_chain_* ç³»åˆ—åè®®ï¼Œå»ºè®®åŠ å¯†æ–¹å¼é€‰æ‹© none (è¯¥ç³»åˆ—åè®®è‡ªå¸¦ RC4 åŠ å¯†)ï¼Œæ··æ·†éšæ„" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: 3. auth_aes128_md5):" ssr_protocol
 	[[ -z "${ssr_protocol}" ]] && ssr_protocol="3"
 	if [[ ${ssr_protocol} == "1" ]]; then
 		ssr_protocol="origin"
@@ -493,10 +493,10 @@ Set_config_protocol(){
 	else
 		ssr_protocol="auth_aes128_md5"
 	fi
-	echo && echo ${Separator_1} && echo -e "	Ğ­Òé : ${Green_font_prefix}${ssr_protocol}${Font_color_suffix}" && echo ${Separator_1} && echo
+	echo && echo ${Separator_1} && echo -e "	åè®® : ${Green_font_prefix}${ssr_protocol}${Font_color_suffix}" && echo ${Separator_1} && echo
 	if [[ ${ssr_protocol} != "origin" ]]; then
 		if [[ ${ssr_protocol} == "auth_sha1_v4" ]]; then
-			stty erase '^H' && read -p "ÊÇ·ñÉèÖÃ Ğ­Òé²å¼ş¼æÈİÔ­°æ(_compatible)£¿[Y/n]" ssr_protocol_yn
+			stty erase '^H' && read -p "æ˜¯å¦è®¾ç½® åè®®æ’ä»¶å…¼å®¹åŸç‰ˆ(_compatible)ï¼Ÿ[Y/n]" ssr_protocol_yn
 			[[ -z "${ssr_protocol_yn}" ]] && ssr_protocol_yn="y"
 			[[ $ssr_protocol_yn == [Yy] ]] && ssr_protocol=${ssr_protocol}"_compatible"
 			echo
@@ -504,15 +504,15 @@ Set_config_protocol(){
 	fi
 }
 Set_config_obfs(){
-	echo -e "ÇëÑ¡ÔñÒªÉèÖÃµÄÓÃ»§ »ìÏı²å¼ş
+	echo -e "è¯·é€‰æ‹©è¦è®¾ç½®çš„ç”¨æˆ· æ··æ·†æ’ä»¶
  ${Green_font_prefix}1.${Font_color_suffix} plain
  ${Green_font_prefix}2.${Font_color_suffix} http_simple
  ${Green_font_prefix}3.${Font_color_suffix} http_post
  ${Green_font_prefix}4.${Font_color_suffix} random_head
  ${Green_font_prefix}5.${Font_color_suffix} tls1.2_ticket_auth
- ${Tip} Èç¹ûÊ¹ÓÃ ShadowsocksR ´úÀíÓÎÏ·£¬½¨ÒéÑ¡Ôñ »ìÏı¼æÈİÔ­°æ»ò plain »ìÏı£¬È»ºó¿Í»§¶ËÑ¡Ôñ plain£¬·ñÔò»áÔö¼ÓÑÓ³Ù !
- ÁíÍâ, Èç¹ûÄãÑ¡ÔñÁË tls1.2_ticket_auth£¬ÄÇÃ´¿Í»§¶Ë¿ÉÒÔÑ¡Ôñ tls1.2_ticket_fastauth£¬ÕâÑù¼´ÄÜÎ±×°ÌØÕ÷ ÓÖ²»»áÔö¼ÓÑÓ³Ù !" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: 5. tls1.2_ticket_auth):" ssr_obfs
+ ${Tip} å¦‚æœä½¿ç”¨ ShadowsocksR ä»£ç†æ¸¸æˆï¼Œå»ºè®®é€‰æ‹© æ··æ·†å…¼å®¹åŸç‰ˆæˆ– plain æ··æ·†ï¼Œç„¶åå®¢æˆ·ç«¯é€‰æ‹© plainï¼Œå¦åˆ™ä¼šå¢åŠ å»¶è¿Ÿ !
+ å¦å¤–, å¦‚æœä½ é€‰æ‹©äº† tls1.2_ticket_authï¼Œé‚£ä¹ˆå®¢æˆ·ç«¯å¯ä»¥é€‰æ‹© tls1.2_ticket_fastauthï¼Œè¿™æ ·å³èƒ½ä¼ªè£…ç‰¹å¾ åˆä¸ä¼šå¢åŠ å»¶è¿Ÿ !" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: 5. tls1.2_ticket_auth):" ssr_obfs
 	[[ -z "${ssr_obfs}" ]] && ssr_obfs="5"
 	if [[ ${ssr_obfs} == "1" ]]; then
 		ssr_obfs="plain"
@@ -527,9 +527,9 @@ Set_config_obfs(){
 	else
 		ssr_obfs="tls1.2_ticket_auth"
 	fi
-	echo && echo ${Separator_1} && echo -e "	»ìÏı : ${Green_font_prefix}${ssr_obfs}${Font_color_suffix}" && echo ${Separator_1} && echo
+	echo && echo ${Separator_1} && echo -e "	æ··æ·† : ${Green_font_prefix}${ssr_obfs}${Font_color_suffix}" && echo ${Separator_1} && echo
 	if [[ ${ssr_obfs} != "plain" ]]; then
-			stty erase '^H' && read -p "ÊÇ·ñÉèÖÃ »ìÏı²å¼ş¼æÈİÔ­°æ(_compatible)£¿[Y/n]" ssr_obfs_yn
+			stty erase '^H' && read -p "æ˜¯å¦è®¾ç½® æ··æ·†æ’ä»¶å…¼å®¹åŸç‰ˆ(_compatible)ï¼Ÿ[Y/n]" ssr_obfs_yn
 			[[ -z "${ssr_obfs_yn}" ]] && ssr_obfs_yn="y"
 			[[ $ssr_obfs_yn == [Yy] ]] && ssr_obfs=${ssr_obfs}"_compatible"
 			echo
@@ -538,40 +538,40 @@ Set_config_obfs(){
 Set_config_protocol_param(){
 	while true
 	do
-	echo -e "ÇëÊäÈëÒªÉèÖÃµÄÓÃ»§ ÓûÏŞÖÆµÄÉè±¸Êı (${Green_font_prefix} auth_* ÏµÁĞĞ­Òé ²»¼æÈİÔ­°æ²ÅÓĞĞ§ ${Font_color_suffix})"
-	echo -e "${Tip} Éè±¸ÊıÏŞÖÆ£ºÃ¿¸ö¶Ë¿ÚÍ¬Ò»Ê±¼äÄÜÁ´½ÓµÄ¿Í»§¶ËÊıÁ¿(¶à¶Ë¿ÚÄ£Ê½£¬Ã¿¸ö¶Ë¿Ú¶¼ÊÇ¶ÀÁ¢¼ÆËã)£¬½¨Òé×îÉÙ 2¸ö¡£"
-	stty erase '^H' && read -p "(Ä¬ÈÏ: ÎŞÏŞ):" ssr_protocol_param
+	echo -e "è¯·è¾“å…¥è¦è®¾ç½®çš„ç”¨æˆ· æ¬²é™åˆ¶çš„è®¾å¤‡æ•° (${Green_font_prefix} auth_* ç³»åˆ—åè®® ä¸å…¼å®¹åŸç‰ˆæ‰æœ‰æ•ˆ ${Font_color_suffix})"
+	echo -e "${Tip} è®¾å¤‡æ•°é™åˆ¶ï¼šæ¯ä¸ªç«¯å£åŒä¸€æ—¶é—´èƒ½é“¾æ¥çš„å®¢æˆ·ç«¯æ•°é‡(å¤šç«¯å£æ¨¡å¼ï¼Œæ¯ä¸ªç«¯å£éƒ½æ˜¯ç‹¬ç«‹è®¡ç®—)ï¼Œå»ºè®®æœ€å°‘ 2ä¸ªã€‚"
+	stty erase '^H' && read -p "(é»˜è®¤: æ— é™):" ssr_protocol_param
 	[[ -z "$ssr_protocol_param" ]] && ssr_protocol_param="" && echo && break
 	expr ${ssr_protocol_param} + 0 &>/dev/null
 	if [[ $? == 0 ]]; then
 		if [[ ${ssr_protocol_param} -ge 1 ]] && [[ ${ssr_protocol_param} -le 9999 ]]; then
-			echo && echo ${Separator_1} && echo -e "	Éè±¸ÊıÏŞÖÆ : ${Green_font_prefix}${ssr_protocol_param}${Font_color_suffix}" && echo ${Separator_1} && echo
+			echo && echo ${Separator_1} && echo -e "	è®¾å¤‡æ•°é™åˆ¶ : ${Green_font_prefix}${ssr_protocol_param}${Font_color_suffix}" && echo ${Separator_1} && echo
 			break
 		else
-			echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-9999)"
+			echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-9999)"
 		fi
 	else
-		echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-9999)"
+		echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-9999)"
 	fi
 	done
 }
 Set_config_speed_limit_per_con(){
 	while true
 	do
-	echo -e "ÇëÊäÈëÒªÉèÖÃµÄÓÃ»§ µ¥Ïß³Ì ÏŞËÙÉÏÏŞ(µ¥Î»£ºKB/S)"
-	echo -e "${Tip} µ¥Ïß³ÌÏŞËÙ£ºÃ¿¸ö¶Ë¿Ú µ¥Ïß³ÌµÄÏŞËÙÉÏÏŞ£¬¶àÏß³Ì¼´ÎŞĞ§¡£"
-	stty erase '^H' && read -p "(Ä¬ÈÏ: ÎŞÏŞ):" ssr_speed_limit_per_con
+	echo -e "è¯·è¾“å…¥è¦è®¾ç½®çš„ç”¨æˆ· å•çº¿ç¨‹ é™é€Ÿä¸Šé™(å•ä½ï¼šKB/S)"
+	echo -e "${Tip} å•çº¿ç¨‹é™é€Ÿï¼šæ¯ä¸ªç«¯å£ å•çº¿ç¨‹çš„é™é€Ÿä¸Šé™ï¼Œå¤šçº¿ç¨‹å³æ— æ•ˆã€‚"
+	stty erase '^H' && read -p "(é»˜è®¤: æ— é™):" ssr_speed_limit_per_con
 	[[ -z "$ssr_speed_limit_per_con" ]] && ssr_speed_limit_per_con=0 && echo && break
 	expr ${ssr_speed_limit_per_con} + 0 &>/dev/null
 	if [[ $? == 0 ]]; then
 		if [[ ${ssr_speed_limit_per_con} -ge 1 ]] && [[ ${ssr_speed_limit_per_con} -le 131072 ]]; then
-			echo && echo ${Separator_1} && echo -e "	µ¥Ïß³ÌÏŞËÙ : ${Green_font_prefix}${ssr_speed_limit_per_con} KB/S${Font_color_suffix}" && echo ${Separator_1} && echo
+			echo && echo ${Separator_1} && echo -e "	å•çº¿ç¨‹é™é€Ÿ : ${Green_font_prefix}${ssr_speed_limit_per_con} KB/S${Font_color_suffix}" && echo ${Separator_1} && echo
 			break
 		else
-			echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-131072)"
+			echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-131072)"
 		fi
 	else
-		echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-131072)"
+		echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-131072)"
 	fi
 	done
 }
@@ -579,20 +579,20 @@ Set_config_speed_limit_per_user(){
 	while true
 	do
 	echo
-	echo -e "ÇëÊäÈëÒªÉèÖÃµÄÓÃ»§ ×ÜËÙ¶È ÏŞËÙÉÏÏŞ(µ¥Î»£ºKB/S)"
-	echo -e "${Tip} ¶Ë¿Ú×ÜÏŞËÙ£ºÃ¿¸ö¶Ë¿Ú ×ÜËÙ¶È ÏŞËÙÉÏÏŞ£¬µ¥¸ö¶Ë¿ÚÕûÌåÏŞËÙ¡£"
-	stty erase '^H' && read -p "(Ä¬ÈÏ: ÎŞÏŞ):" ssr_speed_limit_per_user
+	echo -e "è¯·è¾“å…¥è¦è®¾ç½®çš„ç”¨æˆ· æ€»é€Ÿåº¦ é™é€Ÿä¸Šé™(å•ä½ï¼šKB/S)"
+	echo -e "${Tip} ç«¯å£æ€»é™é€Ÿï¼šæ¯ä¸ªç«¯å£ æ€»é€Ÿåº¦ é™é€Ÿä¸Šé™ï¼Œå•ä¸ªç«¯å£æ•´ä½“é™é€Ÿã€‚"
+	stty erase '^H' && read -p "(é»˜è®¤: æ— é™):" ssr_speed_limit_per_user
 	[[ -z "$ssr_speed_limit_per_user" ]] && ssr_speed_limit_per_user=0 && echo && break
 	expr ${ssr_speed_limit_per_user} + 0 &>/dev/null
 	if [[ $? == 0 ]]; then
 		if [[ ${ssr_speed_limit_per_user} -ge 1 ]] && [[ ${ssr_speed_limit_per_user} -le 131072 ]]; then
-			echo && echo ${Separator_1} && echo -e "	ÓÃ»§×ÜÏŞËÙ : ${Green_font_prefix}${ssr_speed_limit_per_user} KB/S${Font_color_suffix}" && echo ${Separator_1} && echo
+			echo && echo ${Separator_1} && echo -e "	ç”¨æˆ·æ€»é™é€Ÿ : ${Green_font_prefix}${ssr_speed_limit_per_user} KB/S${Font_color_suffix}" && echo ${Separator_1} && echo
 			break
 		else
-			echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-131072)"
+			echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-131072)"
 		fi
 	else
-		echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-131072)"
+		echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-131072)"
 	fi
 	done
 }
@@ -600,32 +600,32 @@ Set_config_transfer(){
 	while true
 	do
 	echo
-	echo -e "ÇëÊäÈëÒªÉèÖÃµÄÓÃ»§ ¿ÉÊ¹ÓÃµÄ×ÜÁ÷Á¿ÉÏÏŞ(µ¥Î»: GB, 1-838868 GB)"
-	stty erase '^H' && read -p "(Ä¬ÈÏ: ÎŞÏŞ):" ssr_transfer
+	echo -e "è¯·è¾“å…¥è¦è®¾ç½®çš„ç”¨æˆ· å¯ä½¿ç”¨çš„æ€»æµé‡ä¸Šé™(å•ä½: GB, 1-838868 GB)"
+	stty erase '^H' && read -p "(é»˜è®¤: æ— é™):" ssr_transfer
 	[[ -z "$ssr_transfer" ]] && ssr_transfer="838868" && echo && break
 	expr ${ssr_transfer} + 0 &>/dev/null
 	if [[ $? == 0 ]]; then
 		if [[ ${ssr_transfer} -ge 1 ]] && [[ ${ssr_transfer} -le 838868 ]]; then
-			echo && echo ${Separator_1} && echo -e "	ÓÃ»§×ÜÁ÷Á¿ : ${Green_font_prefix}${ssr_transfer} GB${Font_color_suffix}" && echo ${Separator_1} && echo
+			echo && echo ${Separator_1} && echo -e "	ç”¨æˆ·æ€»æµé‡ : ${Green_font_prefix}${ssr_transfer} GB${Font_color_suffix}" && echo ${Separator_1} && echo
 			break
 		else
-			echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-838868)"
+			echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-838868)"
 		fi
 	else
-		echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-838868)"
+		echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-838868)"
 	fi
 	done
 }
 Set_config_forbid(){
-	echo "ÇëÊäÈëÒªÉèÖÃµÄÓÃ»§ ½ûÖ¹·ÃÎÊµÄ¶Ë¿Ú"
-	echo -e "${Tip} ½ûÖ¹µÄ¶Ë¿Ú£ºÀıÈç²»ÔÊĞí·ÃÎÊ 25¶Ë¿Ú£¬ÓÃ»§¾ÍÎŞ·¨Í¨¹ıSSR´úÀí·ÃÎÊ ÓÊ¼ş¶Ë¿Ú25ÁË£¬Èç¹û½ûÖ¹ÁË 80,443 ÄÇÃ´ÓÃ»§½«ÎŞ·¨Õı³£·ÃÎÊ http/https ÍøÕ¾¡£
-·â½ûµ¥¸ö¶Ë¿Ú¸ñÊ½: 25
-·â½û¶à¸ö¶Ë¿Ú¸ñÊ½: 23,465
-·â½û  ¶Ë¿Ú¶Î¸ñÊ½: 233-266
-·â½û¶àÖÖ¸ñÊ½¶Ë¿Ú: 25,465,233-666 (²»´øÃ°ºÅ:)"
-	stty erase '^H' && read -p "(Ä¬ÈÏÎª¿Õ ²»½ûÖ¹·ÃÎÊÈÎºÎ¶Ë¿Ú):" ssr_forbid
+	echo "è¯·è¾“å…¥è¦è®¾ç½®çš„ç”¨æˆ· ç¦æ­¢è®¿é—®çš„ç«¯å£"
+	echo -e "${Tip} ç¦æ­¢çš„ç«¯å£ï¼šä¾‹å¦‚ä¸å…è®¸è®¿é—® 25ç«¯å£ï¼Œç”¨æˆ·å°±æ— æ³•é€šè¿‡SSRä»£ç†è®¿é—® é‚®ä»¶ç«¯å£25äº†ï¼Œå¦‚æœç¦æ­¢äº† 80,443 é‚£ä¹ˆç”¨æˆ·å°†æ— æ³•æ­£å¸¸è®¿é—® http/https ç½‘ç«™ã€‚
+å°ç¦å•ä¸ªç«¯å£æ ¼å¼: 25
+å°ç¦å¤šä¸ªç«¯å£æ ¼å¼: 23,465
+å°ç¦  ç«¯å£æ®µæ ¼å¼: 233-266
+å°ç¦å¤šç§æ ¼å¼ç«¯å£: 25,465,233-666 (ä¸å¸¦å†’å·:)"
+	stty erase '^H' && read -p "(é»˜è®¤ä¸ºç©º ä¸ç¦æ­¢è®¿é—®ä»»ä½•ç«¯å£):" ssr_forbid
 	[[ -z "${ssr_forbid}" ]] && ssr_forbid=""
-	echo && echo ${Separator_1} && echo -e "	½ûÖ¹µÄ¶Ë¿Ú : ${Green_font_prefix}${ssr_forbid}${Font_color_suffix}" && echo ${Separator_1} && echo
+	echo && echo ${Separator_1} && echo -e "	ç¦æ­¢çš„ç«¯å£ : ${Green_font_prefix}${ssr_forbid}${Font_color_suffix}" && echo ${Separator_1} && echo
 }
 Set_config_enable(){
 	user_total=$(expr ${user_total} - 1)
@@ -637,35 +637,35 @@ Set_config_enable(){
 		if [[ "${ssr_port}" == "${port_jq}" ]]; then
 			enable=$(${jq_file} ".[${integer}].enable" "${config_user_mudb_file}")
 			echo -e "enable=${enable}"
-			[[ "${enable}" == "null" ]] && echo -e "${Error} »ñÈ¡µ±Ç°¶Ë¿Ú[${ssr_port}]µÄ½ûÓÃ×´Ì¬Ê§°Ü !" && exit 1
+			[[ "${enable}" == "null" ]] && echo -e "${Error} è·å–å½“å‰ç«¯å£[${ssr_port}]çš„ç¦ç”¨çŠ¶æ€å¤±è´¥ !" && exit 1
 			ssr_port_num=$(cat "${config_user_mudb_file}"|grep -n '"port": '${ssr_port}','|awk -F ":" '{print $1}')
 			echo -e "ssr_port_num=${ssr_port_num}"
-			[[ "${ssr_port_num}" == "null" ]] && echo -e "${Error} »ñÈ¡µ±Ç°¶Ë¿Ú[${ssr_port}]µÄĞĞÊıÊ§°Ü !" && exit 1
+			[[ "${ssr_port_num}" == "null" ]] && echo -e "${Error} è·å–å½“å‰ç«¯å£[${ssr_port}]çš„è¡Œæ•°å¤±è´¥ !" && exit 1
 			ssr_enable_num=$(expr ${ssr_port_num} - 5)
 			echo -e "ssr_enable_num=${ssr_enable_num}"
 			break
 		fi
 	done
 	if [[ "${enable}" == "1" ]]; then
-		echo -e "¶Ë¿Ú [${ssr_port}] µÄÕËºÅ×´Ì¬Îª£º${Green_font_prefix}ÆôÓÃ${Font_color_suffix} , ÊÇ·ñÇĞ»»Îª ${Red_font_prefix}½ûÓÃ${Font_color_suffix} ?[Y/n]"
-		stty erase '^H' && read -p "(Ä¬ÈÏ: Y):" ssr_enable_yn
+		echo -e "ç«¯å£ [${ssr_port}] çš„è´¦å·çŠ¶æ€ä¸ºï¼š${Green_font_prefix}å¯ç”¨${Font_color_suffix} , æ˜¯å¦åˆ‡æ¢ä¸º ${Red_font_prefix}ç¦ç”¨${Font_color_suffix} ?[Y/n]"
+		stty erase '^H' && read -p "(é»˜è®¤: Y):" ssr_enable_yn
 		[[ -z "${ssr_enable_yn}" ]] && ssr_enable_yn="y"
 		if [[ "${ssr_enable_yn}" == [Yy] ]]; then
 			ssr_enable="0"
 		else
-			echo "È¡Ïû..." && exit 0
+			echo "å–æ¶ˆ..." && exit 0
 		fi
 	elif [[ "${enable}" == "0" ]]; then
-		echo -e "¶Ë¿Ú [${ssr_port}] µÄÕËºÅ×´Ì¬Îª£º${Green_font_prefix}½ûÓÃ${Font_color_suffix} , ÊÇ·ñÇĞ»»Îª ${Red_font_prefix}ÆôÓÃ${Font_color_suffix} ?[Y/n]"
-		stty erase '^H' && read -p "(Ä¬ÈÏ: Y):" ssr_enable_yn
+		echo -e "ç«¯å£ [${ssr_port}] çš„è´¦å·çŠ¶æ€ä¸ºï¼š${Green_font_prefix}ç¦ç”¨${Font_color_suffix} , æ˜¯å¦åˆ‡æ¢ä¸º ${Red_font_prefix}å¯ç”¨${Font_color_suffix} ?[Y/n]"
+		stty erase '^H' && read -p "(é»˜è®¤: Y):" ssr_enable_yn
 		[[ -z "${ssr_enable_yn}" ]] && ssr_enable_yn = "y"
 		if [[ "${ssr_enable_yn}" == [Yy] ]]; then
 			ssr_enable="1"
 		else
-			echo "È¡Ïû..." && exit 0
+			echo "å–æ¶ˆ..." && exit 0
 		fi
 	else
-		echo -e "${Error} µ±Ç°¶Ë¿ÚµÄ½ûÓÃ×´Ì¬Òì³£[${enable}] !" && exit 1
+		echo -e "${Error} å½“å‰ç«¯å£çš„ç¦ç”¨çŠ¶æ€å¼‚å¸¸[${enable}] !" && exit 1
 	fi
 }
 Set_user_api_server_pub_addr(){
@@ -673,21 +673,21 @@ Set_user_api_server_pub_addr(){
 	if [[ "${addr}" == "Modify" ]]; then
 		server_pub_addr=$(cat ${config_user_api_file}|grep "SERVER_PUB_ADDR = "|awk -F "[']" '{print $2}')
 		if [[ -z ${server_pub_addr} ]]; then
-			echo -e "${Error} »ñÈ¡µ±Ç°ÅäÖÃµÄ ·şÎñÆ÷IP»òÓòÃûÊ§°Ü£¡" && exit 1
+			echo -e "${Error} è·å–å½“å‰é…ç½®çš„ æœåŠ¡å™¨IPæˆ–åŸŸåå¤±è´¥ï¼" && exit 1
 		else
-			echo -e "${Info} µ±Ç°ÅäÖÃµÄ·şÎñÆ÷IP»òÓòÃûÎª£º ${Green_font_prefix}${server_pub_addr}${Font_color_suffix}"
+			echo -e "${Info} å½“å‰é…ç½®çš„æœåŠ¡å™¨IPæˆ–åŸŸåä¸ºï¼š ${Green_font_prefix}${server_pub_addr}${Font_color_suffix}"
 		fi
 	fi
-	echo "ÇëÊäÈëÓÃ»§ÅäÖÃÖĞÒªÏÔÊ¾µÄ ·şÎñÆ÷IP»òÓòÃû (µ±·şÎñÆ÷ÓĞ¶à¸öIPÊ±£¬¿ÉÒÔÖ¸¶¨ÓÃ»§ÅäÖÃÖĞÏÔÊ¾µÄIP»òÕßÓòÃû)"
-	stty erase '^H' && read -p "(Ä¬ÈÏ×Ô¶¯¼ì²âÍâÍøIP):" ssr_server_pub_addr
+	echo "è¯·è¾“å…¥ç”¨æˆ·é…ç½®ä¸­è¦æ˜¾ç¤ºçš„ æœåŠ¡å™¨IPæˆ–åŸŸå (å½“æœåŠ¡å™¨æœ‰å¤šä¸ªIPæ—¶ï¼Œå¯ä»¥æŒ‡å®šç”¨æˆ·é…ç½®ä¸­æ˜¾ç¤ºçš„IPæˆ–è€…åŸŸå)"
+	stty erase '^H' && read -p "(é»˜è®¤è‡ªåŠ¨æ£€æµ‹å¤–ç½‘IP):" ssr_server_pub_addr
 	if [[ -z "${ssr_server_pub_addr}" ]]; then
 		Get_IP
 		if [[ ${ip} == "VPS_IP" ]]; then
 			while true
 			do
-			stty erase '^H' && read -p "${Error} ×Ô¶¯¼ì²âÍâÍøIPÊ§°Ü£¬ÇëÊÖ¶¯ÊäÈë·şÎñÆ÷IP»òÓòÃû" ssr_server_pub_addr
+			stty erase '^H' && read -p "${Error} è‡ªåŠ¨æ£€æµ‹å¤–ç½‘IPå¤±è´¥ï¼Œè¯·æ‰‹åŠ¨è¾“å…¥æœåŠ¡å™¨IPæˆ–åŸŸå" ssr_server_pub_addr
 			if [[ -z "$ssr_server_pub_addr" ]]; then
-				echo -e "${Error} ²»ÄÜÎª¿Õ£¡"
+				echo -e "${Error} ä¸èƒ½ä¸ºç©ºï¼"
 			else
 				break
 			fi
@@ -696,7 +696,7 @@ Set_user_api_server_pub_addr(){
 			ssr_server_pub_addr="${ip}"
 		fi
 	fi
-	echo && echo ${Separator_1} && echo -e "	IP»òÓòÃû : ${Green_font_prefix}${ssr_server_pub_addr}${Font_color_suffix}" && echo ${Separator_1} && echo
+	echo && echo ${Separator_1} && echo -e "	IPæˆ–åŸŸå : ${Green_font_prefix}${ssr_server_pub_addr}${Font_color_suffix}" && echo ${Separator_1} && echo
 }
 Set_config_all(){
 	lal=$1
@@ -724,61 +724,61 @@ Set_config_all(){
 		Set_config_forbid
 	fi
 }
-# ĞŞ¸Ä ÅäÖÃĞÅÏ¢
+# ä¿®æ”¹ é…ç½®ä¿¡æ¯
 Modify_config_password(){
 	match_edit=$(python mujson_mgr.py -e -p "${ssr_port}" -k "${ssr_password}"|grep -w "edit user ")
 	if [[ -z "${match_edit}" ]]; then
-		echo -e "${Error} ÓÃ»§ÃÜÂëĞŞ¸ÄÊ§°Ü ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} " && exit 1
+		echo -e "${Error} ç”¨æˆ·å¯†ç ä¿®æ”¹å¤±è´¥ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} " && exit 1
 	else
-		echo -e "${Info} ÓÃ»§ÃÜÂëĞŞ¸Ä³É¹¦ ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} (×¢Òâ£º¿ÉÄÜĞèÒªÊ®Ãë×óÓÒ²Å»áÓ¦ÓÃ×îĞÂÅäÖÃ)"
+		echo -e "${Info} ç”¨æˆ·å¯†ç ä¿®æ”¹æˆåŠŸ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} (æ³¨æ„ï¼šå¯èƒ½éœ€è¦åç§’å·¦å³æ‰ä¼šåº”ç”¨æœ€æ–°é…ç½®)"
 	fi
 }
 Modify_config_method(){
 	match_edit=$(python mujson_mgr.py -e -p "${ssr_port}" -m "${ssr_method}"|grep -w "edit user ")
 	if [[ -z "${match_edit}" ]]; then
-		echo -e "${Error} ÓÃ»§¼ÓÃÜ·½Ê½ĞŞ¸ÄÊ§°Ü ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} " && exit 1
+		echo -e "${Error} ç”¨æˆ·åŠ å¯†æ–¹å¼ä¿®æ”¹å¤±è´¥ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} " && exit 1
 	else
-		echo -e "${Info} ÓÃ»§¼ÓÃÜ·½Ê½ĞŞ¸Ä³É¹¦ ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} (×¢Òâ£º¿ÉÄÜĞèÒªÊ®Ãë×óÓÒ²Å»áÓ¦ÓÃ×îĞÂÅäÖÃ)"
+		echo -e "${Info} ç”¨æˆ·åŠ å¯†æ–¹å¼ä¿®æ”¹æˆåŠŸ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} (æ³¨æ„ï¼šå¯èƒ½éœ€è¦åç§’å·¦å³æ‰ä¼šåº”ç”¨æœ€æ–°é…ç½®)"
 	fi
 }
 Modify_config_protocol(){
 	match_edit=$(python mujson_mgr.py -e -p "${ssr_port}" -O "${ssr_protocol}"|grep -w "edit user ")
 	if [[ -z "${match_edit}" ]]; then
-		echo -e "${Error} ÓÃ»§Ğ­ÒéĞŞ¸ÄÊ§°Ü ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} " && exit 1
+		echo -e "${Error} ç”¨æˆ·åè®®ä¿®æ”¹å¤±è´¥ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} " && exit 1
 	else
-		echo -e "${Info} ÓÃ»§Ğ­ÒéĞŞ¸Ä³É¹¦ ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} (×¢Òâ£º¿ÉÄÜĞèÒªÊ®Ãë×óÓÒ²Å»áÓ¦ÓÃ×îĞÂÅäÖÃ)"
+		echo -e "${Info} ç”¨æˆ·åè®®ä¿®æ”¹æˆåŠŸ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} (æ³¨æ„ï¼šå¯èƒ½éœ€è¦åç§’å·¦å³æ‰ä¼šåº”ç”¨æœ€æ–°é…ç½®)"
 	fi
 }
 Modify_config_obfs(){
 	match_edit=$(python mujson_mgr.py -e -p "${ssr_port}" -o "${ssr_obfs}"|grep -w "edit user ")
 	if [[ -z "${match_edit}" ]]; then
-		echo -e "${Error} ÓÃ»§»ìÏıĞŞ¸ÄÊ§°Ü ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} " && exit 1
+		echo -e "${Error} ç”¨æˆ·æ··æ·†ä¿®æ”¹å¤±è´¥ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} " && exit 1
 	else
-		echo -e "${Info} ÓÃ»§»ìÏıĞŞ¸Ä³É¹¦ ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} (×¢Òâ£º¿ÉÄÜĞèÒªÊ®Ãë×óÓÒ²Å»áÓ¦ÓÃ×îĞÂÅäÖÃ)"
+		echo -e "${Info} ç”¨æˆ·æ··æ·†ä¿®æ”¹æˆåŠŸ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} (æ³¨æ„ï¼šå¯èƒ½éœ€è¦åç§’å·¦å³æ‰ä¼šåº”ç”¨æœ€æ–°é…ç½®)"
 	fi
 }
 Modify_config_protocol_param(){
 	match_edit=$(python mujson_mgr.py -e -p "${ssr_port}" -G "${ssr_protocol_param}"|grep -w "edit user ")
 	if [[ -z "${match_edit}" ]]; then
-		echo -e "${Error} ÓÃ»§Ğ­Òé²ÎÊı(Éè±¸ÊıÏŞÖÆ)ĞŞ¸ÄÊ§°Ü ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} " && exit 1
+		echo -e "${Error} ç”¨æˆ·åè®®å‚æ•°(è®¾å¤‡æ•°é™åˆ¶)ä¿®æ”¹å¤±è´¥ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} " && exit 1
 	else
-		echo -e "${Info} ÓÃ»§Òé²ÎÊı(Éè±¸ÊıÏŞÖÆ)ĞŞ¸Ä³É¹¦ ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} (×¢Òâ£º¿ÉÄÜĞèÒªÊ®Ãë×óÓÒ²Å»áÓ¦ÓÃ×îĞÂÅäÖÃ)"
+		echo -e "${Info} ç”¨æˆ·è®®å‚æ•°(è®¾å¤‡æ•°é™åˆ¶)ä¿®æ”¹æˆåŠŸ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} (æ³¨æ„ï¼šå¯èƒ½éœ€è¦åç§’å·¦å³æ‰ä¼šåº”ç”¨æœ€æ–°é…ç½®)"
 	fi
 }
 Modify_config_speed_limit_per_con(){
 	match_edit=$(python mujson_mgr.py -e -p "${ssr_port}" -s "${ssr_speed_limit_per_con}"|grep -w "edit user ")
 	if [[ -z "${match_edit}" ]]; then
-		echo -e "${Error} ÓÃ»§µ¥Ïß³ÌÏŞËÙĞŞ¸ÄÊ§°Ü ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} " && exit 1
+		echo -e "${Error} ç”¨æˆ·å•çº¿ç¨‹é™é€Ÿä¿®æ”¹å¤±è´¥ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} " && exit 1
 	else
-		echo -e "${Info} ÓÃ»§µ¥Ïß³ÌÏŞËÙĞŞ¸Ä³É¹¦ ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} (×¢Òâ£º¿ÉÄÜĞèÒªÊ®Ãë×óÓÒ²Å»áÓ¦ÓÃ×îĞÂÅäÖÃ)"
+		echo -e "${Info} ç”¨æˆ·å•çº¿ç¨‹é™é€Ÿä¿®æ”¹æˆåŠŸ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} (æ³¨æ„ï¼šå¯èƒ½éœ€è¦åç§’å·¦å³æ‰ä¼šåº”ç”¨æœ€æ–°é…ç½®)"
 	fi
 }
 Modify_config_speed_limit_per_user(){
 	match_edit=$(python mujson_mgr.py -e -p "${ssr_port}" -S "${ssr_speed_limit_per_user}"|grep -w "edit user ")
 	if [[ -z "${match_edit}" ]]; then
-		echo -e "${Error} ÓÃ»§¶Ë¿Ú×ÜÏŞËÙĞŞ¸ÄÊ§°Ü ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} " && exit 1
+		echo -e "${Error} ç”¨æˆ·ç«¯å£æ€»é™é€Ÿä¿®æ”¹å¤±è´¥ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} " && exit 1
 	else
-		echo -e "${Info} ÓÃ»§¶Ë¿Ú×ÜÏŞËÙĞŞ¸Ä³É¹¦ ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} (×¢Òâ£º¿ÉÄÜĞèÒªÊ®Ãë×óÓÒ²Å»áÓ¦ÓÃ×îĞÂÅäÖÃ)"
+		echo -e "${Info} ç”¨æˆ·ç«¯å£æ€»é™é€Ÿä¿®æ”¹æˆåŠŸ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} (æ³¨æ„ï¼šå¯èƒ½éœ€è¦åç§’å·¦å³æ‰ä¼šåº”ç”¨æœ€æ–°é…ç½®)"
 	fi
 }
 Modify_config_connect_verbose_info(){
@@ -787,17 +787,17 @@ Modify_config_connect_verbose_info(){
 Modify_config_transfer(){
 	match_edit=$(python mujson_mgr.py -e -p "${ssr_port}" -t "${ssr_transfer}"|grep -w "edit user ")
 	if [[ -z "${match_edit}" ]]; then
-		echo -e "${Error} ÓÃ»§×ÜÁ÷Á¿ĞŞ¸ÄÊ§°Ü ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} " && exit 1
+		echo -e "${Error} ç”¨æˆ·æ€»æµé‡ä¿®æ”¹å¤±è´¥ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} " && exit 1
 	else
-		echo -e "${Info} ÓÃ»§×ÜÁ÷Á¿ĞŞ¸Ä³É¹¦ ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} (×¢Òâ£º¿ÉÄÜĞèÒªÊ®Ãë×óÓÒ²Å»áÓ¦ÓÃ×îĞÂÅäÖÃ)"
+		echo -e "${Info} ç”¨æˆ·æ€»æµé‡ä¿®æ”¹æˆåŠŸ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} (æ³¨æ„ï¼šå¯èƒ½éœ€è¦åç§’å·¦å³æ‰ä¼šåº”ç”¨æœ€æ–°é…ç½®)"
 	fi
 }
 Modify_config_forbid(){
 	match_edit=$(python mujson_mgr.py -e -p "${ssr_port}" -f "${ssr_forbid}"|grep -w "edit user ")
 	if [[ -z "${match_edit}" ]]; then
-		echo -e "${Error} ÓÃ»§½ûÖ¹·ÃÎÊ¶Ë¿ÚĞŞ¸ÄÊ§°Ü ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} " && exit 1
+		echo -e "${Error} ç”¨æˆ·ç¦æ­¢è®¿é—®ç«¯å£ä¿®æ”¹å¤±è´¥ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} " && exit 1
 	else
-		echo -e "${Info} ÓÃ»§½ûÖ¹·ÃÎÊ¶Ë¿ÚĞŞ¸Ä³É¹¦ ${Green_font_prefix}[¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} (×¢Òâ£º¿ÉÄÜĞèÒªÊ®Ãë×óÓÒ²Å»áÓ¦ÓÃ×îĞÂÅäÖÃ)"
+		echo -e "${Info} ç”¨æˆ·ç¦æ­¢è®¿é—®ç«¯å£ä¿®æ”¹æˆåŠŸ ${Green_font_prefix}[ç«¯å£: ${ssr_port}]${Font_color_suffix} (æ³¨æ„ï¼šå¯èƒ½éœ€è¦åç§’å·¦å³æ‰ä¼šåº”ç”¨æœ€æ–°é…ç½®)"
 	fi
 }
 Modify_config_enable(){
@@ -820,7 +820,7 @@ Modify_config_all(){
 Check_python(){
 	python_ver=`python -h`
 	if [[ -z ${python_ver} ]]; then
-		echo -e "${Info} Ã»ÓĞ°²×°Python£¬¿ªÊ¼°²×°..."
+		echo -e "${Info} æ²¡æœ‰å®‰è£…Pythonï¼Œå¼€å§‹å®‰è£…..."
 		if [[ ${release} == "centos" ]]; then
 			yum install -y python
 		else
@@ -846,49 +846,49 @@ Debian_apt(){
 		apt-get install -y vim unzip cron
 	fi
 }
-# ÏÂÔØ ShadowsocksR
+# ä¸‹è½½ ShadowsocksR
 Download_SSR(){
 	cd "/usr/local"
 	wget -N --no-check-certificate "https://github.com/ToyoDAdoubi/shadowsocksr/archive/manyuser.zip"
 	#git config --global http.sslVerify false
 	#env GIT_SSL_NO_VERIFY=true git clone -b manyuser https://github.com/ToyoDAdoubi/shadowsocksr.git
-	#[[ ! -e ${ssr_folder} ]] && echo -e "${Error} ShadowsocksR·şÎñ¶Ë ÏÂÔØÊ§°Ü !" && exit 1
-	[[ ! -e "manyuser.zip" ]] && echo -e "${Error} ShadowsocksR·şÎñ¶Ë Ñ¹Ëõ°ü ÏÂÔØÊ§°Ü !" && rm -rf manyuser.zip && exit 1
+	#[[ ! -e ${ssr_folder} ]] && echo -e "${Error} ShadowsocksRæœåŠ¡ç«¯ ä¸‹è½½å¤±è´¥ !" && exit 1
+	[[ ! -e "manyuser.zip" ]] && echo -e "${Error} ShadowsocksRæœåŠ¡ç«¯ å‹ç¼©åŒ… ä¸‹è½½å¤±è´¥ !" && rm -rf manyuser.zip && exit 1
 	unzip "manyuser.zip"
-	[[ ! -e "/usr/local/shadowsocksr-manyuser/" ]] && echo -e "${Error} ShadowsocksR·şÎñ¶Ë ½âÑ¹Ê§°Ü !" && rm -rf manyuser.zip && exit 1
+	[[ ! -e "/usr/local/shadowsocksr-manyuser/" ]] && echo -e "${Error} ShadowsocksRæœåŠ¡ç«¯ è§£å‹å¤±è´¥ !" && rm -rf manyuser.zip && exit 1
 	mv "/usr/local/shadowsocksr-manyuser/" "/usr/local/shadowsocksr/"
-	[[ ! -e "/usr/local/shadowsocksr/" ]] && echo -e "${Error} ShadowsocksR·şÎñ¶Ë ÖØÃüÃûÊ§°Ü !" && rm -rf manyuser.zip && rm -rf "/usr/local/shadowsocksr-manyuser/" && exit 1
+	[[ ! -e "/usr/local/shadowsocksr/" ]] && echo -e "${Error} ShadowsocksRæœåŠ¡ç«¯ é‡å‘½åå¤±è´¥ !" && rm -rf manyuser.zip && rm -rf "/usr/local/shadowsocksr-manyuser/" && exit 1
 	rm -rf manyuser.zip
 	cd "shadowsocksr"
 	cp "${ssr_folder}/config.json" "${config_user_file}"
 	cp "${ssr_folder}/mysql.json" "${ssr_folder}/usermysql.json"
 	cp "${ssr_folder}/apiconfig.py" "${config_user_api_file}"
-	[[ ! -e ${config_user_api_file} ]] && echo -e "${Error} ShadowsocksR·şÎñ¶Ë apiconfig.py ¸´ÖÆÊ§°Ü !" && exit 1
+	[[ ! -e ${config_user_api_file} ]] && echo -e "${Error} ShadowsocksRæœåŠ¡ç«¯ apiconfig.py å¤åˆ¶å¤±è´¥ !" && exit 1
 	sed -i "s/API_INTERFACE = 'sspanelv2'/API_INTERFACE = 'mudbjson'/" ${config_user_api_file}
 	server_pub_addr="127.0.0.1"
 	Modify_user_api_server_pub_addr
 	#sed -i "s/SERVER_PUB_ADDR = '127.0.0.1'/SERVER_PUB_ADDR = '${ip}'/" ${config_user_api_file}
 	sed -i 's/ \/\/ only works under multi-user mode//g' "${config_user_file}"
-	echo -e "${Info} ShadowsocksR·şÎñ¶Ë ÏÂÔØÍê³É !"
+	echo -e "${Info} ShadowsocksRæœåŠ¡ç«¯ ä¸‹è½½å®Œæˆ !"
 }
 Service_SSR(){
 	if [[ ${release} = "centos" ]]; then
 		if ! wget --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/other/ssrmu_centos -O /etc/init.d/ssrmu; then
-			echo -e "${Error} ShadowsocksR·şÎñ ¹ÜÀí½Å±¾ÏÂÔØÊ§°Ü !" && exit 1
+			echo -e "${Error} ShadowsocksRæœåŠ¡ ç®¡ç†è„šæœ¬ä¸‹è½½å¤±è´¥ !" && exit 1
 		fi
 		chmod +x /etc/init.d/ssrmu
 		chkconfig --add ssrmu
 		chkconfig ssrmu on
 	else
 		if ! wget --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/other/ssrmu_debian -O /etc/init.d/ssrmu; then
-			echo -e "${Error} ShadowsocksR·şÎñ ¹ÜÀí½Å±¾ÏÂÔØÊ§°Ü !" && exit 1
+			echo -e "${Error} ShadowsocksRæœåŠ¡ ç®¡ç†è„šæœ¬ä¸‹è½½å¤±è´¥ !" && exit 1
 		fi
 		chmod +x /etc/init.d/ssrmu
 		update-rc.d -f ssrmu defaults
 	fi
-	echo -e "${Info} ShadowsocksR·şÎñ ¹ÜÀí½Å±¾ÏÂÔØÍê³É !"
+	echo -e "${Info} ShadowsocksRæœåŠ¡ ç®¡ç†è„šæœ¬ä¸‹è½½å®Œæˆ !"
 }
-# °²×° JQ½âÎöÆ÷
+# å®‰è£… JQè§£æå™¨
 JQ_install(){
 	if [[ ! -e ${jq_file} ]]; then
 		cd "${ssr_folder}"
@@ -899,21 +899,21 @@ JQ_install(){
 			mv "jq-linux32" "jq"
 			#wget --no-check-certificate "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux32" -O ${jq_file}
 		fi
-		[[ ! -e ${jq_file} ]] && echo -e "${Error} JQ½âÎöÆ÷ ÖØÃüÃûÊ§°Ü£¬Çë¼ì²é !" && exit 1
+		[[ ! -e ${jq_file} ]] && echo -e "${Error} JQè§£æå™¨ é‡å‘½åå¤±è´¥ï¼Œè¯·æ£€æŸ¥ !" && exit 1
 		chmod +x ${jq_file}
-		echo -e "${Info} JQ½âÎöÆ÷ °²×°Íê³É£¬¼ÌĞø..." 
+		echo -e "${Info} JQè§£æå™¨ å®‰è£…å®Œæˆï¼Œç»§ç»­..." 
 	else
-		echo -e "${Info} JQ½âÎöÆ÷ ÒÑ°²×°£¬¼ÌĞø..."
+		echo -e "${Info} JQè§£æå™¨ å·²å®‰è£…ï¼Œç»§ç»­..."
 	fi
 }
-# °²×° ÒÀÀµ
+# å®‰è£… ä¾èµ–
 Installation_dependency(){
 	if [[ ${release} == "centos" ]]; then
 		Centos_yum
 	else
 		Debian_apt
 	fi
-	[[ ! -e "/usr/bin/unzip" ]] && echo -e "${Error} ÒÀÀµ unzip(½âÑ¹Ñ¹Ëõ°ü) °²×°Ê§°Ü£¬¶à°ëÊÇÈí¼ş°üÔ´µÄÎÊÌâ£¬Çë¼ì²é !" && exit 1
+	[[ ! -e "/usr/bin/unzip" ]] && echo -e "${Error} ä¾èµ– unzip(è§£å‹å‹ç¼©åŒ…) å®‰è£…å¤±è´¥ï¼Œå¤šåŠæ˜¯è½¯ä»¶åŒ…æºçš„é—®é¢˜ï¼Œè¯·æ£€æŸ¥ !" && exit 1
 	Check_python
 	#echo "nameserver 8.8.8.8" > /etc/resolv.conf
 	#echo "nameserver 8.8.4.4" >> /etc/resolv.conf
@@ -926,42 +926,42 @@ Installation_dependency(){
 }
 Install_SSR(){
 	check_root
-	[[ -e ${ssr_folder} ]] && echo -e "${Error} ShadowsocksR ÎÄ¼ş¼ĞÒÑ´æÔÚ£¬Çë¼ì²é( Èç°²×°Ê§°Ü»òÕß´æÔÚ¾É°æ±¾£¬ÇëÏÈĞ¶ÔØ ) !" && exit 1
-	echo -e "${Info} ¿ªÊ¼ÉèÖÃ ShadowsocksRÕËºÅÅäÖÃ..."
+	[[ -e ${ssr_folder} ]] && echo -e "${Error} ShadowsocksR æ–‡ä»¶å¤¹å·²å­˜åœ¨ï¼Œè¯·æ£€æŸ¥( å¦‚å®‰è£…å¤±è´¥æˆ–è€…å­˜åœ¨æ—§ç‰ˆæœ¬ï¼Œè¯·å…ˆå¸è½½ ) !" && exit 1
+	echo -e "${Info} å¼€å§‹è®¾ç½® ShadowsocksRè´¦å·é…ç½®..."
 	Set_user_api_server_pub_addr
 	Set_config_all
-	echo -e "${Info} ¿ªÊ¼°²×°/ÅäÖÃ ShadowsocksRÒÀÀµ..."
+	echo -e "${Info} å¼€å§‹å®‰è£…/é…ç½® ShadowsocksRä¾èµ–..."
 	Installation_dependency
-	echo -e "${Info} ¿ªÊ¼ÏÂÔØ/°²×° ShadowsocksRÎÄ¼ş..."
+	echo -e "${Info} å¼€å§‹ä¸‹è½½/å®‰è£… ShadowsocksRæ–‡ä»¶..."
 	Download_SSR
-	echo -e "${Info} ¿ªÊ¼ÏÂÔØ/°²×° ShadowsocksR·şÎñ½Å±¾(init)..."
+	echo -e "${Info} å¼€å§‹ä¸‹è½½/å®‰è£… ShadowsocksRæœåŠ¡è„šæœ¬(init)..."
 	Service_SSR
-	echo -e "${Info} ¿ªÊ¼ÏÂÔØ/°²×° JSNO½âÎöÆ÷ JQ..."
+	echo -e "${Info} å¼€å§‹ä¸‹è½½/å®‰è£… JSNOè§£æå™¨ JQ..."
 	JQ_install
-	echo -e "${Info} ¿ªÊ¼Ìí¼Ó³õÊ¼ÓÃ»§..."
+	echo -e "${Info} å¼€å§‹æ·»åŠ åˆå§‹ç”¨æˆ·..."
 	Add_port_user "install"
-	echo -e "${Info} ¿ªÊ¼ÉèÖÃ iptables·À»ğÇ½..."
+	echo -e "${Info} å¼€å§‹è®¾ç½® iptablesé˜²ç«å¢™..."
 	Set_iptables
-	echo -e "${Info} ¿ªÊ¼Ìí¼Ó iptables·À»ğÇ½¹æÔò..."
+	echo -e "${Info} å¼€å§‹æ·»åŠ  iptablesé˜²ç«å¢™è§„åˆ™..."
 	Add_iptables
-	echo -e "${Info} ¿ªÊ¼±£´æ iptables·À»ğÇ½¹æÔò..."
+	echo -e "${Info} å¼€å§‹ä¿å­˜ iptablesé˜²ç«å¢™è§„åˆ™..."
 	Save_iptables
-	echo -e "${Info} ËùÓĞ²½Öè °²×°Íê±Ï£¬¿ªÊ¼Æô¶¯ ShadowsocksR·şÎñ¶Ë..."
+	echo -e "${Info} æ‰€æœ‰æ­¥éª¤ å®‰è£…å®Œæ¯•ï¼Œå¼€å§‹å¯åŠ¨ ShadowsocksRæœåŠ¡ç«¯..."
 	Start_SSR
 	Get_User_info "${ssr_port}"
 	View_User_info
 }
 Update_SSR(){
 	SSR_installation_status
-	echo -e "ÒòÆÆÍŞÔİÍ£¸üĞÂShadowsocksR·şÎñ¶Ë£¬ËùÒÔ´Ë¹¦ÄÜÁÙÊ±½ûÓÃ¡£"
+	echo -e "å› ç ´å¨ƒæš‚åœæ›´æ–°ShadowsocksRæœåŠ¡ç«¯ï¼Œæ‰€ä»¥æ­¤åŠŸèƒ½ä¸´æ—¶ç¦ç”¨ã€‚"
 	#cd ${ssr_folder}
 	#git pull
 	#Restart_SSR
 }
 Uninstall_SSR(){
-	[[ ! -e ${ssr_folder} ]] && echo -e "${Error} Ã»ÓĞ°²×° ShadowsocksR£¬Çë¼ì²é !" && exit 1
-	echo "È·¶¨Òª Ğ¶ÔØShadowsocksR£¿[y/N]" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: n):" unyn
+	[[ ! -e ${ssr_folder} ]] && echo -e "${Error} æ²¡æœ‰å®‰è£… ShadowsocksRï¼Œè¯·æ£€æŸ¥ !" && exit 1
+	echo "ç¡®å®šè¦ å¸è½½ShadowsocksRï¼Ÿ[y/N]" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: n):" unyn
 	[[ -z ${unyn} ]] && unyn="n"
 	if [[ ${unyn} == [Yy] ]]; then
 		check_pid
@@ -981,62 +981,62 @@ Uninstall_SSR(){
 			update-rc.d -f ssrmu remove
 		fi
 		rm -rf ${ssr_folder} && rm -rf /etc/init.d/ssrmu
-		echo && echo " ShadowsocksR Ğ¶ÔØÍê³É !" && echo
+		echo && echo " ShadowsocksR å¸è½½å®Œæˆ !" && echo
 	else
-		echo && echo " Ğ¶ÔØÒÑÈ¡Ïû..." && echo
+		echo && echo " å¸è½½å·²å–æ¶ˆ..." && echo
 	fi
 }
 Check_Libsodium_ver(){
-	echo -e "${Info} ¿ªÊ¼»ñÈ¡ libsodium ×îĞÂ°æ±¾..."
+	echo -e "${Info} å¼€å§‹è·å– libsodium æœ€æ–°ç‰ˆæœ¬..."
 	Libsodiumr_ver=$(wget -qO- "https://github.com/jedisct1/libsodium/tags"|grep "/jedisct1/libsodium/releases/tag/"|head -1|sed -r 's/.*tag\/(.+)\">.*/\1/')
 	[[ -z ${Libsodiumr_ver} ]] && Libsodiumr_ver=${Libsodiumr_ver_backup}
-	echo -e "${Info} libsodium ×îĞÂ°æ±¾Îª ${Green_font_prefix}${Libsodiumr_ver}${Font_color_suffix} !"
+	echo -e "${Info} libsodium æœ€æ–°ç‰ˆæœ¬ä¸º ${Green_font_prefix}${Libsodiumr_ver}${Font_color_suffix} !"
 }
 Install_Libsodium(){
 	if [[ -e ${Libsodiumr_file} ]]; then
-		echo -e "${Error} libsodium ÒÑ°²×° , ÊÇ·ñ¸²¸Ç°²×°(¸üĞÂ)£¿[y/N]"
-		stty erase '^H' && read -p "(Ä¬ÈÏ: n):" yn
+		echo -e "${Error} libsodium å·²å®‰è£… , æ˜¯å¦è¦†ç›–å®‰è£…(æ›´æ–°)ï¼Ÿ[y/N]"
+		stty erase '^H' && read -p "(é»˜è®¤: n):" yn
 		[[ -z ${yn} ]] && yn="n"
 		if [[ ${yn} == [Nn] ]]; then
-			echo "ÒÑÈ¡Ïû..." && exit 1
+			echo "å·²å–æ¶ˆ..." && exit 1
 		fi
 	else
-		echo -e "${Info} libsodium Î´°²×°£¬¿ªÊ¼°²×°..."
+		echo -e "${Info} libsodium æœªå®‰è£…ï¼Œå¼€å§‹å®‰è£…..."
 	fi
 	Check_Libsodium_ver
 	if [[ ${release} == "centos" ]]; then
 		yum update
-		echo -e "${Info} °²×°ÒÀÀµ..."
+		echo -e "${Info} å®‰è£…ä¾èµ–..."
 		yum -y groupinstall "Development Tools"
-		echo -e "${Info} ÏÂÔØ..."
+		echo -e "${Info} ä¸‹è½½..."
 		wget  --no-check-certificate -N "https://github.com/jedisct1/libsodium/releases/download/${Libsodiumr_ver}/libsodium-${Libsodiumr_ver}.tar.gz"
-		echo -e "${Info} ½âÑ¹..."
+		echo -e "${Info} è§£å‹..."
 		tar -xzf libsodium-${Libsodiumr_ver}.tar.gz && cd libsodium-${Libsodiumr_ver}
-		echo -e "${Info} ±àÒë°²×°..."
+		echo -e "${Info} ç¼–è¯‘å®‰è£…..."
 		./configure --disable-maintainer-mode && make -j2 && make install
 		echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
 	else
 		apt-get update
-		echo -e "${Info} °²×°ÒÀÀµ..."
+		echo -e "${Info} å®‰è£…ä¾èµ–..."
 		apt-get install -y build-essential
-		echo -e "${Info} ÏÂÔØ..."
+		echo -e "${Info} ä¸‹è½½..."
 		wget  --no-check-certificate -N "https://github.com/jedisct1/libsodium/releases/download/${Libsodiumr_ver}/libsodium-${Libsodiumr_ver}.tar.gz"
-		echo -e "${Info} ½âÑ¹..."
+		echo -e "${Info} è§£å‹..."
 		tar -xzf libsodium-${Libsodiumr_ver}.tar.gz && cd libsodium-${Libsodiumr_ver}
-		echo -e "${Info} ±àÒë°²×°..."
+		echo -e "${Info} ç¼–è¯‘å®‰è£…..."
 		./configure --disable-maintainer-mode && make -j2 && make install
 	fi
 	ldconfig
 	cd .. && rm -rf libsodium-${Libsodiumr_ver}.tar.gz && rm -rf libsodium-${Libsodiumr_ver}
-	[[ ! -e ${Libsodiumr_file} ]] && echo -e "${Error} libsodium °²×°Ê§°Ü !" && exit 1
-	echo && echo -e "${Info} libsodium °²×°³É¹¦ !" && echo
+	[[ ! -e ${Libsodiumr_file} ]] && echo -e "${Error} libsodium å®‰è£…å¤±è´¥ !" && exit 1
+	echo && echo -e "${Info} libsodium å®‰è£…æˆåŠŸ !" && echo
 }
-# ÏÔÊ¾ Á¬½ÓĞÅÏ¢
+# æ˜¾ç¤º è¿æ¥ä¿¡æ¯
 debian_View_user_connection_info(){
 	format_1=$1
 	user_info=$(python mujson_mgr.py -l)
 	user_total=$(echo "${user_info}"|wc -l)
-	[[ -z ${user_info} ]] && echo -e "${Error} Ã»ÓĞ·¢ÏÖ ÓÃ»§£¬Çë¼ì²é !" && exit 1
+	[[ -z ${user_info} ]] && echo -e "${Error} æ²¡æœ‰å‘ç° ç”¨æˆ·ï¼Œè¯·æ£€æŸ¥ !" && exit 1
 	IP_total=`netstat -anp |grep 'ESTABLISHED' |grep 'python' |grep 'tcp6' |awk '{print $5}' |awk -F ":" '{print $1}' |sort -u |wc -l`
 	user_list_all=""
 	for((integer = 1; integer <= ${user_total}; integer++))
@@ -1054,17 +1054,17 @@ debian_View_user_connection_info(){
 			fi
 		fi
 		user_info_233=$(python mujson_mgr.py -l|grep -w "${user_port}"|awk '{print $2}'|sed 's/\[//g;s/\]//g')
-		user_list_all=${user_list_all}"ÓÃ»§Ãû: ${Green_font_prefix}"${user_info_233}"${Font_color_suffix}\t ¶Ë¿Ú: ${Green_font_prefix}"${user_port}"${Font_color_suffix}\t Á´½ÓIP×ÜÊı: ${Green_font_prefix}"${user_IP_total}"${Font_color_suffix}\t µ±Ç°Á´½ÓIP: ${Green_font_prefix}${user_IP}${Font_color_suffix}\n"
+		user_list_all=${user_list_all}"ç”¨æˆ·å: ${Green_font_prefix}"${user_info_233}"${Font_color_suffix}\t ç«¯å£: ${Green_font_prefix}"${user_port}"${Font_color_suffix}\t é“¾æ¥IPæ€»æ•°: ${Green_font_prefix}"${user_IP_total}"${Font_color_suffix}\t å½“å‰é“¾æ¥IP: ${Green_font_prefix}${user_IP}${Font_color_suffix}\n"
 		user_IP=""
 	done
-	echo -e "ÓÃ»§×ÜÊı: ${Green_background_prefix} "${user_total}" ${Font_color_suffix} Á´½ÓIP×ÜÊı: ${Green_background_prefix} "${IP_total}" ${Font_color_suffix} "
+	echo -e "ç”¨æˆ·æ€»æ•°: ${Green_background_prefix} "${user_total}" ${Font_color_suffix} é“¾æ¥IPæ€»æ•°: ${Green_background_prefix} "${IP_total}" ${Font_color_suffix} "
 	echo -e "${user_list_all}"
 }
 centos_View_user_connection_info(){
 	format_1=$1
 	user_info=$(python mujson_mgr.py -l)
 	user_total=$(echo "${user_info}"|wc -l)
-	[[ -z ${user_info} ]] && echo -e "${Error} Ã»ÓĞ·¢ÏÖ ÓÃ»§£¬Çë¼ì²é !" && exit 1
+	[[ -z ${user_info} ]] && echo -e "${Error} æ²¡æœ‰å‘ç° ç”¨æˆ·ï¼Œè¯·æ£€æŸ¥ !" && exit 1
 	IP_total=`netstat -anp |grep 'ESTABLISHED' |grep 'python' |grep 'tcp' | grep '::ffff:' |awk '{print $5}' |awk -F ":" '{print $4}' |sort -u |wc -l`
 	user_list_all=""
 	for((integer = 1; integer <= ${user_total}; integer++))
@@ -1082,26 +1082,26 @@ centos_View_user_connection_info(){
 			fi
 		fi
 		user_info_233=$(python mujson_mgr.py -l|grep -w "${user_port}"|awk '{print $2}'|sed 's/\[//g;s/\]//g')
-		user_list_all=${user_list_all}"ÓÃ»§Ãû: ${Green_font_prefix}"${user_info_233}"${Font_color_suffix}\t ¶Ë¿Ú: ${Green_font_prefix}"${user_port}"${Font_color_suffix}\t Á´½ÓIP×ÜÊı: ${Green_font_prefix}"${user_IP_total}"${Font_color_suffix}\t µ±Ç°Á´½ÓIP: ${Green_font_prefix}${user_IP}${Font_color_suffix}\n"
+		user_list_all=${user_list_all}"ç”¨æˆ·å: ${Green_font_prefix}"${user_info_233}"${Font_color_suffix}\t ç«¯å£: ${Green_font_prefix}"${user_port}"${Font_color_suffix}\t é“¾æ¥IPæ€»æ•°: ${Green_font_prefix}"${user_IP_total}"${Font_color_suffix}\t å½“å‰é“¾æ¥IP: ${Green_font_prefix}${user_IP}${Font_color_suffix}\n"
 		user_IP=""
 	done
-	echo -e "ÓÃ»§×ÜÊı: ${Green_background_prefix} "${user_total}" ${Font_color_suffix} Á´½ÓIP×ÜÊı: ${Green_background_prefix} "${IP_total}" ${Font_color_suffix} "
+	echo -e "ç”¨æˆ·æ€»æ•°: ${Green_background_prefix} "${user_total}" ${Font_color_suffix} é“¾æ¥IPæ€»æ•°: ${Green_background_prefix} "${IP_total}" ${Font_color_suffix} "
 	echo -e "${user_list_all}"
 }
 View_user_connection_info(){
 	SSR_installation_status
-	echo && echo -e "ÇëÑ¡ÔñÒªÏÔÊ¾µÄ¸ñÊ½£º
- ${Green_font_prefix}1.${Font_color_suffix} ÏÔÊ¾ IP ¸ñÊ½
- ${Green_font_prefix}2.${Font_color_suffix} ÏÔÊ¾ IP+IP¹éÊôµØ ¸ñÊ½" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: 1):" ssr_connection_info
+	echo && echo -e "è¯·é€‰æ‹©è¦æ˜¾ç¤ºçš„æ ¼å¼ï¼š
+ ${Green_font_prefix}1.${Font_color_suffix} æ˜¾ç¤º IP æ ¼å¼
+ ${Green_font_prefix}2.${Font_color_suffix} æ˜¾ç¤º IP+IPå½’å±åœ° æ ¼å¼" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: 1):" ssr_connection_info
 	[[ -z "${ssr_connection_info}" ]] && ssr_connection_info="1"
 	if [[ ${ssr_connection_info} == "1" ]]; then
 		View_user_connection_info_1 ""
 	elif [[ ${ssr_connection_info} == "2" ]]; then
-		echo -e "${Tip} ¼ì²âIP¹éÊôµØ(ipip.net)£¬Èç¹ûIP½Ï¶à£¬¿ÉÄÜÊ±¼ä»á±È½Ï³¤..."
+		echo -e "${Tip} æ£€æµ‹IPå½’å±åœ°(ipip.net)ï¼Œå¦‚æœIPè¾ƒå¤šï¼Œå¯èƒ½æ—¶é—´ä¼šæ¯”è¾ƒé•¿..."
 		View_user_connection_info_1 "IP_address"
 	else
-		echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-2)" && exit 1
+		echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-2)" && exit 1
 	fi
 }
 View_user_connection_info_1(){
@@ -1133,44 +1133,44 @@ get_IP_address(){
 		done
 	fi
 }
-# ĞŞ¸Ä ÓÃ»§ÅäÖÃ
+# ä¿®æ”¹ ç”¨æˆ·é…ç½®
 Modify_port(){
 	List_port_user
 	while true
 	do
-		echo -e "ÇëÊäÈëÒªĞŞ¸ÄµÄÓÃ»§ ¶Ë¿Ú"
-		stty erase '^H' && read -p "(Ä¬ÈÏ: È¡Ïû):" ssr_port
-		[[ -z "${ssr_port}" ]] && echo -e "ÒÑÈ¡Ïû..." && exit 1
+		echo -e "è¯·è¾“å…¥è¦ä¿®æ”¹çš„ç”¨æˆ· ç«¯å£"
+		stty erase '^H' && read -p "(é»˜è®¤: å–æ¶ˆ):" ssr_port
+		[[ -z "${ssr_port}" ]] && echo -e "å·²å–æ¶ˆ..." && exit 1
 		Modify_user=$(cat "${config_user_mudb_file}"|grep '"port": '"${ssr_port}"',')
 		if [[ ! -z ${Modify_user} ]]; then
 			break
 		else
-			echo -e "${Error} ÇëÊäÈëÕıÈ·µÄ¶Ë¿Ú !"
+			echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„ç«¯å£ !"
 		fi
 	done
 }
 Modify_Config(){
 	SSR_installation_status
-	echo && echo -e "ÄãÒª×öÊ²Ã´£¿
- ${Green_font_prefix}1.${Font_color_suffix}  Ìí¼Ó ÓÃ»§ÅäÖÃ
- ${Green_font_prefix}2.${Font_color_suffix}  É¾³ı ÓÃ»§ÅäÖÃ
-¡ª¡ª¡ª¡ª¡ª ĞŞ¸Ä ÓÃ»§ÅäÖÃ ¡ª¡ª¡ª¡ª¡ª
- ${Green_font_prefix}3.${Font_color_suffix}  ĞŞ¸Ä ÓÃ»§ÃÜÂë
- ${Green_font_prefix}4.${Font_color_suffix}  ĞŞ¸Ä ¼ÓÃÜ·½Ê½
- ${Green_font_prefix}5.${Font_color_suffix}  ĞŞ¸Ä Ğ­Òé²å¼ş
- ${Green_font_prefix}6.${Font_color_suffix}  ĞŞ¸Ä »ìÏı²å¼ş
- ${Green_font_prefix}7.${Font_color_suffix}  ĞŞ¸Ä Éè±¸ÊıÏŞÖÆ
- ${Green_font_prefix}8.${Font_color_suffix}  ĞŞ¸Ä µ¥Ïß³ÌÏŞËÙ
- ${Green_font_prefix}9.${Font_color_suffix}  ĞŞ¸Ä ÓÃ»§×ÜÏŞËÙ
- ${Green_font_prefix}10.${Font_color_suffix} ĞŞ¸Ä ÓÃ»§×ÜÁ÷Á¿
- ${Green_font_prefix}11.${Font_color_suffix} ĞŞ¸Ä ÓÃ»§½ûÓÃ¶Ë¿Ú
- ${Green_font_prefix}12.${Font_color_suffix} ĞŞ¸Ä È«²¿ÅäÖÃ
-¡ª¡ª¡ª¡ª¡ª ÆäËû ¡ª¡ª¡ª¡ª¡ª
- ${Green_font_prefix}13.${Font_color_suffix} ĞŞ¸Ä ÓÃ»§ÅäÖÃÖĞÏÔÊ¾µÄIP»òÓòÃû
+	echo && echo -e "ä½ è¦åšä»€ä¹ˆï¼Ÿ
+ ${Green_font_prefix}1.${Font_color_suffix}  æ·»åŠ  ç”¨æˆ·é…ç½®
+ ${Green_font_prefix}2.${Font_color_suffix}  åˆ é™¤ ç”¨æˆ·é…ç½®
+â€”â€”â€”â€”â€” ä¿®æ”¹ ç”¨æˆ·é…ç½® â€”â€”â€”â€”â€”
+ ${Green_font_prefix}3.${Font_color_suffix}  ä¿®æ”¹ ç”¨æˆ·å¯†ç 
+ ${Green_font_prefix}4.${Font_color_suffix}  ä¿®æ”¹ åŠ å¯†æ–¹å¼
+ ${Green_font_prefix}5.${Font_color_suffix}  ä¿®æ”¹ åè®®æ’ä»¶
+ ${Green_font_prefix}6.${Font_color_suffix}  ä¿®æ”¹ æ··æ·†æ’ä»¶
+ ${Green_font_prefix}7.${Font_color_suffix}  ä¿®æ”¹ è®¾å¤‡æ•°é™åˆ¶
+ ${Green_font_prefix}8.${Font_color_suffix}  ä¿®æ”¹ å•çº¿ç¨‹é™é€Ÿ
+ ${Green_font_prefix}9.${Font_color_suffix}  ä¿®æ”¹ ç”¨æˆ·æ€»é™é€Ÿ
+ ${Green_font_prefix}10.${Font_color_suffix} ä¿®æ”¹ ç”¨æˆ·æ€»æµé‡
+ ${Green_font_prefix}11.${Font_color_suffix} ä¿®æ”¹ ç”¨æˆ·ç¦ç”¨ç«¯å£
+ ${Green_font_prefix}12.${Font_color_suffix} ä¿®æ”¹ å…¨éƒ¨é…ç½®
+â€”â€”â€”â€”â€” å…¶ä»– â€”â€”â€”â€”â€”
+ ${Green_font_prefix}13.${Font_color_suffix} ä¿®æ”¹ ç”¨æˆ·é…ç½®ä¸­æ˜¾ç¤ºçš„IPæˆ–åŸŸå
  
- ${Tip} ÓÃ»§µÄÓÃ»§ÃûºÍ¶Ë¿ÚÊÇÎŞ·¨ĞŞ¸Ä£¬Èç¹ûĞèÒªĞŞ¸ÄÇëÊ¹ÓÃ½Å±¾µÄ ÊÖ¶¯ĞŞ¸Ä¹¦ÄÜ !" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: È¡Ïû):" ssr_modify
-	[[ -z "${ssr_modify}" ]] && echo "ÒÑÈ¡Ïû..." && exit 1
+ ${Tip} ç”¨æˆ·çš„ç”¨æˆ·åå’Œç«¯å£æ˜¯æ— æ³•ä¿®æ”¹ï¼Œå¦‚æœéœ€è¦ä¿®æ”¹è¯·ä½¿ç”¨è„šæœ¬çš„ æ‰‹åŠ¨ä¿®æ”¹åŠŸèƒ½ !" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: å–æ¶ˆ):" ssr_modify
+	[[ -z "${ssr_modify}" ]] && echo "å·²å–æ¶ˆ..." && exit 1
 	if [[ ${ssr_modify} == "1" ]]; then
 		Add_port_user
 	elif [[ ${ssr_modify} == "2" ]]; then
@@ -1219,13 +1219,13 @@ Modify_Config(){
 		Set_user_api_server_pub_addr "Modify"
 		Modify_user_api_server_pub_addr
 	else
-		echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-13)" && exit 1
+		echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-13)" && exit 1
 	fi
 }
 List_port_user(){
 	user_info=$(python mujson_mgr.py -l)
 	user_total=$(echo "${user_info}"|wc -l)
-	[[ -z ${user_info} ]] && echo -e "${Error} Ã»ÓĞ·¢ÏÖ ÓÃ»§£¬Çë¼ì²é !" && exit 1
+	[[ -z ${user_info} ]] && echo -e "${Error} æ²¡æœ‰å‘ç° ç”¨æˆ·ï¼Œè¯·æ£€æŸ¥ !" && exit 1
 	user_list_all=""
 	for((integer = 1; integer <= ${user_total}; integer++))
 	do
@@ -1233,12 +1233,12 @@ List_port_user(){
 		user_username=$(echo "${user_info}"|sed -n "${integer}p"|awk '{print $2}'|sed 's/\[//g;s/\]//g')
 		Get_User_transfer "${user_port}"
 		transfer_enable_Used_233=$(expr $transfer_enable_Used_233 + $transfer_enable_Used_2_1)
-		user_list_all=${user_list_all}"ÓÃ»§Ãû: ${Green_font_prefix} "${user_username}"${Font_color_suffix}\t ¶Ë¿Ú: ${Green_font_prefix}"${user_port}"${Font_color_suffix}\t Á÷Á¿Ê¹ÓÃÇé¿ö(ÒÑÓÃ+Ê£Óà=×Ü): ${Green_font_prefix}${transfer_enable_Used_2}${Font_color_suffix} + ${Green_font_prefix}${transfer_enable_Used}${Font_color_suffix} = ${Green_font_prefix}${transfer_enable}${Font_color_suffix}\n"
+		user_list_all=${user_list_all}"ç”¨æˆ·å: ${Green_font_prefix} "${user_username}"${Font_color_suffix}\t ç«¯å£: ${Green_font_prefix}"${user_port}"${Font_color_suffix}\t æµé‡ä½¿ç”¨æƒ…å†µ(å·²ç”¨+å‰©ä½™=æ€»): ${Green_font_prefix}${transfer_enable_Used_2}${Font_color_suffix} + ${Green_font_prefix}${transfer_enable_Used}${Font_color_suffix} = ${Green_font_prefix}${transfer_enable}${Font_color_suffix}\n"
 	done
 	Get_User_transfer_all
-	echo && echo -e "=== ÓÃ»§×ÜÊı ${Green_background_prefix} "${user_total}" ${Font_color_suffix}"
+	echo && echo -e "=== ç”¨æˆ·æ€»æ•° ${Green_background_prefix} "${user_total}" ${Font_color_suffix}"
 	echo -e ${user_list_all}
-	echo -e "=== µ±Ç°ËùÓĞÓÃ»§ÒÑÊ¹ÓÃÁ÷Á¿×ÜºÍ: ${Green_background_prefix} ${transfer_enable_Used_233_2} ${Font_color_suffix}\n"
+	echo -e "=== å½“å‰æ‰€æœ‰ç”¨æˆ·å·²ä½¿ç”¨æµé‡æ€»å’Œ: ${Green_background_prefix} ${transfer_enable_Used_233_2} ${Font_color_suffix}\n"
 }
 Add_port_user(){
 	lalal=$1
@@ -1249,26 +1249,26 @@ Add_port_user(){
 		do
 			Set_config_all
 			match_port=$(python mujson_mgr.py -l|grep -w "port ${ssr_port}$")
-			[[ ! -z "${match_port}" ]] && echo -e "${Error} ¸Ã¶Ë¿Ú [${ssr_port}] ÒÑ´æÔÚ£¬ÇëÎğÖØ¸´Ìí¼Ó !" && exit 1
+			[[ ! -z "${match_port}" ]] && echo -e "${Error} è¯¥ç«¯å£ [${ssr_port}] å·²å­˜åœ¨ï¼Œè¯·å‹¿é‡å¤æ·»åŠ  !" && exit 1
 			match_username=$(python mujson_mgr.py -l|grep -w "user \[${ssr_user}]")
-			[[ ! -z "${match_username}" ]] && echo -e "${Error} ¸ÃÓÃ»§Ãû [${ssr_user}] ÒÑ´æÔÚ£¬ÇëÎğÖØ¸´Ìí¼Ó !" && exit 1
+			[[ ! -z "${match_username}" ]] && echo -e "${Error} è¯¥ç”¨æˆ·å [${ssr_user}] å·²å­˜åœ¨ï¼Œè¯·å‹¿é‡å¤æ·»åŠ  !" && exit 1
 			match_add=$(python mujson_mgr.py -a -u "${ssr_user}" -p "${ssr_port}" -k "${ssr_password}" -m "${ssr_method}" -O "${ssr_protocol}" -G "${ssr_protocol_param}" -o "${ssr_obfs}" -s "${ssr_speed_limit_per_con}" -S "${ssr_speed_limit_per_user}" -t "${ssr_transfer}" -f "${ssr_forbid}"|grep -w "add user info")
 			if [[ -z "${match_add}" ]]; then
-				echo -e "${Error} ÓÃ»§Ìí¼ÓÊ§°Ü ${Green_font_prefix}[ÓÃ»§Ãû: ${ssr_user} , ¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} "
+				echo -e "${Error} ç”¨æˆ·æ·»åŠ å¤±è´¥ ${Green_font_prefix}[ç”¨æˆ·å: ${ssr_user} , ç«¯å£: ${ssr_port}]${Font_color_suffix} "
 				break
 			else
 				Add_iptables
 				Save_iptables
-				echo -e "${Info} ÓÃ»§Ìí¼Ó³É¹¦ ${Green_font_prefix}[ÓÃ»§Ãû: ${ssr_user} , ¶Ë¿Ú: ${ssr_port}]${Font_color_suffix} "
+				echo -e "${Info} ç”¨æˆ·æ·»åŠ æˆåŠŸ ${Green_font_prefix}[ç”¨æˆ·å: ${ssr_user} , ç«¯å£: ${ssr_port}]${Font_color_suffix} "
 				echo
-				stty erase '^H' && read -p "ÊÇ·ñ¼ÌĞø Ìí¼ÓÓÃ»§ÅäÖÃ£¿[Y/n]:" addyn
+				stty erase '^H' && read -p "æ˜¯å¦ç»§ç»­ æ·»åŠ ç”¨æˆ·é…ç½®ï¼Ÿ[Y/n]:" addyn
 				[[ -z ${addyn} ]] && addyn="y"
 				if [[ ${addyn} == [Nn] ]]; then
 					Get_User_info "${ssr_port}"
 					View_User_info
 					break
 				else
-					echo -e "${Info} ¼ÌĞø Ìí¼ÓÓÃ»§ÅäÖÃ..."
+					echo -e "${Info} ç»§ç»­ æ·»åŠ ç”¨æˆ·é…ç½®..."
 				fi
 			fi
 		done
@@ -1278,31 +1278,31 @@ Del_port_user(){
 	List_port_user
 	while true
 	do
-		echo -e "ÇëÊäÈëÒªÉ¾³ıµÄÓÃ»§ ¶Ë¿Ú"
-		stty erase '^H' && read -p "(Ä¬ÈÏ: È¡Ïû):" del_user_port
-		[[ -z "${del_user_port}" ]] && echo -e "ÒÑÈ¡Ïû..." && exit 1
+		echo -e "è¯·è¾“å…¥è¦åˆ é™¤çš„ç”¨æˆ· ç«¯å£"
+		stty erase '^H' && read -p "(é»˜è®¤: å–æ¶ˆ):" del_user_port
+		[[ -z "${del_user_port}" ]] && echo -e "å·²å–æ¶ˆ..." && exit 1
 		del_user=$(cat "${config_user_mudb_file}"|grep '"port": '"${del_user_port}"',')
 		if [[ ! -z ${del_user} ]]; then
 			port=${del_user_port}
 			match_del=$(python mujson_mgr.py -d -p "${del_user_port}"|grep -w "delete user ")
 			if [[ -z "${match_del}" ]]; then
-				echo -e "${Error} ÓÃ»§É¾³ıÊ§°Ü ${Green_font_prefix}[¶Ë¿Ú: ${del_user_port}]${Font_color_suffix} "
+				echo -e "${Error} ç”¨æˆ·åˆ é™¤å¤±è´¥ ${Green_font_prefix}[ç«¯å£: ${del_user_port}]${Font_color_suffix} "
 			else
 				Del_iptables
 				Save_iptables
-				echo -e "${Info} ÓÃ»§É¾³ı³É¹¦ ${Green_font_prefix}[¶Ë¿Ú: ${del_user_port}]${Font_color_suffix} "
+				echo -e "${Info} ç”¨æˆ·åˆ é™¤æˆåŠŸ ${Green_font_prefix}[ç«¯å£: ${del_user_port}]${Font_color_suffix} "
 			fi
 			break
 		else
-			echo -e "${Error} ÇëÊäÈëÕıÈ·µÄ¶Ë¿Ú !"
+			echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„ç«¯å£ !"
 		fi
 	done
 }
 Manually_Modify_Config(){
 	SSR_installation_status
 	vi ${config_user_mudb_file}
-	echo "ÊÇ·ñÏÖÔÚÖØÆôShadowsocksR£¿[Y/n]" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: y):" yn
+	echo "æ˜¯å¦ç°åœ¨é‡å¯ShadowsocksRï¼Ÿ[Y/n]" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: y):" yn
 	[[ -z ${yn} ]] && yn="y"
 	if [[ ${yn} == [Yy] ]]; then
 		Restart_SSR
@@ -1310,24 +1310,24 @@ Manually_Modify_Config(){
 }
 Clear_transfer(){
 	SSR_installation_status
-	echo && echo -e "ÄãÒª×öÊ²Ã´£¿
- ${Green_font_prefix}1.${Font_color_suffix}  ÇåÁã µ¥¸öÓÃ»§ÒÑÊ¹ÓÃÁ÷Á¿
- ${Green_font_prefix}2.${Font_color_suffix}  ÇåÁã ËùÓĞÓÃ»§ÒÑÊ¹ÓÃÁ÷Á¿(²»¿ÉÍì»Ø)
- ${Green_font_prefix}3.${Font_color_suffix}  Æô¶¯ ¶¨Ê±ËùÓĞÓÃ»§Á÷Á¿ÇåÁã
- ${Green_font_prefix}4.${Font_color_suffix}  Í£Ö¹ ¶¨Ê±ËùÓĞÓÃ»§Á÷Á¿ÇåÁã
- ${Green_font_prefix}5.${Font_color_suffix}  ĞŞ¸Ä ¶¨Ê±ËùÓĞÓÃ»§Á÷Á¿ÇåÁã" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: È¡Ïû):" ssr_modify
-	[[ -z "${ssr_modify}" ]] && echo "ÒÑÈ¡Ïû..." && exit 1
+	echo && echo -e "ä½ è¦åšä»€ä¹ˆï¼Ÿ
+ ${Green_font_prefix}1.${Font_color_suffix}  æ¸…é›¶ å•ä¸ªç”¨æˆ·å·²ä½¿ç”¨æµé‡
+ ${Green_font_prefix}2.${Font_color_suffix}  æ¸…é›¶ æ‰€æœ‰ç”¨æˆ·å·²ä½¿ç”¨æµé‡(ä¸å¯æŒ½å›)
+ ${Green_font_prefix}3.${Font_color_suffix}  å¯åŠ¨ å®šæ—¶æ‰€æœ‰ç”¨æˆ·æµé‡æ¸…é›¶
+ ${Green_font_prefix}4.${Font_color_suffix}  åœæ­¢ å®šæ—¶æ‰€æœ‰ç”¨æˆ·æµé‡æ¸…é›¶
+ ${Green_font_prefix}5.${Font_color_suffix}  ä¿®æ”¹ å®šæ—¶æ‰€æœ‰ç”¨æˆ·æµé‡æ¸…é›¶" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: å–æ¶ˆ):" ssr_modify
+	[[ -z "${ssr_modify}" ]] && echo "å·²å–æ¶ˆ..." && exit 1
 	if [[ ${ssr_modify} == "1" ]]; then
 		Clear_transfer_one
 	elif [[ ${ssr_modify} == "2" ]]; then
-		echo "È·¶¨Òª ÇåÁã ËùÓĞÓÃ»§ÒÑÊ¹ÓÃÁ÷Á¿£¿[y/N]" && echo
-		stty erase '^H' && read -p "(Ä¬ÈÏ: n):" yn
+		echo "ç¡®å®šè¦ æ¸…é›¶ æ‰€æœ‰ç”¨æˆ·å·²ä½¿ç”¨æµé‡ï¼Ÿ[y/N]" && echo
+		stty erase '^H' && read -p "(é»˜è®¤: n):" yn
 		[[ -z ${yn} ]] && yn="n"
 		if [[ ${yn} == [Yy] ]]; then
 			Clear_transfer_all
 		else
-			echo "È¡Ïû..."
+			echo "å–æ¶ˆ..."
 		fi
 	elif [[ ${ssr_modify} == "3" ]]; then
 		check_crontab
@@ -1340,27 +1340,27 @@ Clear_transfer(){
 		check_crontab
 		Clear_transfer_all_cron_modify
 	else
-		echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-5)" && exit 1
+		echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-5)" && exit 1
 	fi
 }
 Clear_transfer_one(){
 	List_port_user
 	while true
 	do
-		echo -e "ÇëÊäÈëÒªÇåÁãÒÑÊ¹ÓÃÁ÷Á¿µÄÓÃ»§ ¶Ë¿Ú"
-		stty erase '^H' && read -p "(Ä¬ÈÏ: È¡Ïû):" Clear_transfer_user_port
-		[[ -z "${Clear_transfer_user_port}" ]] && echo -e "ÒÑÈ¡Ïû..." && exit 1
+		echo -e "è¯·è¾“å…¥è¦æ¸…é›¶å·²ä½¿ç”¨æµé‡çš„ç”¨æˆ· ç«¯å£"
+		stty erase '^H' && read -p "(é»˜è®¤: å–æ¶ˆ):" Clear_transfer_user_port
+		[[ -z "${Clear_transfer_user_port}" ]] && echo -e "å·²å–æ¶ˆ..." && exit 1
 		Clear_transfer_user=$(cat "${config_user_mudb_file}"|grep '"port": '"${Clear_transfer_user_port}"',')
 		if [[ ! -z ${Clear_transfer_user} ]]; then
 			match_clear=$(python mujson_mgr.py -c -p "${Clear_transfer_user_port}"|grep -w "clear user ")
 			if [[ -z "${match_clear}" ]]; then
-				echo -e "${Error} ÓÃ»§ÒÑÊ¹ÓÃÁ÷Á¿ÇåÁãÊ§°Ü ${Green_font_prefix}[¶Ë¿Ú: ${Clear_transfer_user_port}]${Font_color_suffix} "
+				echo -e "${Error} ç”¨æˆ·å·²ä½¿ç”¨æµé‡æ¸…é›¶å¤±è´¥ ${Green_font_prefix}[ç«¯å£: ${Clear_transfer_user_port}]${Font_color_suffix} "
 			else
-				echo -e "${Info} ÓÃ»§ÒÑÊ¹ÓÃÁ÷Á¿ÇåÁã³É¹¦ ${Green_font_prefix}[¶Ë¿Ú: ${Clear_transfer_user_port}]${Font_color_suffix} "
+				echo -e "${Info} ç”¨æˆ·å·²ä½¿ç”¨æµé‡æ¸…é›¶æˆåŠŸ ${Green_font_prefix}[ç«¯å£: ${Clear_transfer_user_port}]${Font_color_suffix} "
 			fi
 			break
 		else
-			echo -e "${Error} ÇëÊäÈëÕıÈ·µÄ¶Ë¿Ú !"
+			echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„ç«¯å£ !"
 		fi
 	done
 }
@@ -1368,18 +1368,18 @@ Clear_transfer_all(){
 	cd "${ssr_folder}"
 	user_info=$(python mujson_mgr.py -l)
 	user_total=$(echo "${user_info}"|wc -l)
-	[[ -z ${user_info} ]] && echo -e "${Error} Ã»ÓĞ·¢ÏÖ ÓÃ»§£¬Çë¼ì²é !" && exit 1
+	[[ -z ${user_info} ]] && echo -e "${Error} æ²¡æœ‰å‘ç° ç”¨æˆ·ï¼Œè¯·æ£€æŸ¥ !" && exit 1
 	for((integer = 1; integer <= ${user_total}; integer++))
 	do
 		user_port=$(echo "${user_info}"|sed -n "${integer}p"|awk '{print $4}')
 		match_clear=$(python mujson_mgr.py -c -p "${user_port}"|grep -w "clear user ")
 		if [[ -z "${match_clear}" ]]; then
-			echo -e "${Error} ÓÃ»§ÒÑÊ¹ÓÃÁ÷Á¿ÇåÁãÊ§°Ü ${Green_font_prefix}[¶Ë¿Ú: ${user_port}]${Font_color_suffix} "
+			echo -e "${Error} ç”¨æˆ·å·²ä½¿ç”¨æµé‡æ¸…é›¶å¤±è´¥ ${Green_font_prefix}[ç«¯å£: ${user_port}]${Font_color_suffix} "
 		else
-			echo -e "${Info} ÓÃ»§ÒÑÊ¹ÓÃÁ÷Á¿ÇåÁã³É¹¦ ${Green_font_prefix}[¶Ë¿Ú: ${user_port}]${Font_color_suffix} "
+			echo -e "${Info} ç”¨æˆ·å·²ä½¿ç”¨æµé‡æ¸…é›¶æˆåŠŸ ${Green_font_prefix}[ç«¯å£: ${user_port}]${Font_color_suffix} "
 		fi
 	done
-	echo -e "${Info} ËùÓĞÓÃ»§Á÷Á¿ÇåÁãÍê±Ï !"
+	echo -e "${Info} æ‰€æœ‰ç”¨æˆ·æµé‡æ¸…é›¶å®Œæ¯• !"
 }
 Clear_transfer_all_cron_start(){
 	crontab -l > "$file/crontab.bak"
@@ -1389,9 +1389,9 @@ Clear_transfer_all_cron_start(){
 	rm -r "$file/crontab.bak"
 	cron_config=$(crontab -l | grep "ssrmu.sh")
 	if [[ -z ${cron_config} ]]; then
-		echo -e "${Error} ¶¨Ê±ËùÓĞÓÃ»§Á÷Á¿ÇåÁãÆô¶¯Ê§°Ü !" && exit 1
+		echo -e "${Error} å®šæ—¶æ‰€æœ‰ç”¨æˆ·æµé‡æ¸…é›¶å¯åŠ¨å¤±è´¥ !" && exit 1
 	else
-		echo -e "${Info} ¶¨Ê±ËùÓĞÓÃ»§Á÷Á¿ÇåÁãÆô¶¯³É¹¦ !"
+		echo -e "${Info} å®šæ—¶æ‰€æœ‰ç”¨æˆ·æµé‡æ¸…é›¶å¯åŠ¨æˆåŠŸ !"
 	fi
 }
 Clear_transfer_all_cron_stop(){
@@ -1401,9 +1401,9 @@ Clear_transfer_all_cron_stop(){
 	rm -r "$file/crontab.bak"
 	cron_config=$(crontab -l | grep "ssrmu.sh")
 	if [[ ! -z ${cron_config} ]]; then
-		echo -e "${Error} ¶¨Ê±ËùÓĞÓÃ»§Á÷Á¿ÇåÁãÍ£Ö¹Ê§°Ü !" && exit 1
+		echo -e "${Error} å®šæ—¶æ‰€æœ‰ç”¨æˆ·æµé‡æ¸…é›¶åœæ­¢å¤±è´¥ !" && exit 1
 	else
-		echo -e "${Info} ¶¨Ê±ËùÓĞÓÃ»§Á÷Á¿ÇåÁãÍ£Ö¹³É¹¦ !"
+		echo -e "${Info} å®šæ—¶æ‰€æœ‰ç”¨æˆ·æµé‡æ¸…é›¶åœæ­¢æˆåŠŸ !"
 	fi
 }
 Clear_transfer_all_cron_modify(){
@@ -1412,27 +1412,27 @@ Clear_transfer_all_cron_modify(){
 	Clear_transfer_all_cron_start
 }
 Set_crontab(){
-		echo -e "ÇëÊäÈëÁ÷Á¿ÇåÁãÊ±¼ä¼ä¸ô
- === ¸ñÊ½ËµÃ÷ ===
- * * * * * ·Ö±ğ¶ÔÓ¦ ·ÖÖÓ Ğ¡Ê± ÈÕ·İ ÔÂ·İ ĞÇÆÚ
- ${Green_font_prefix} 0 2 1 * * ${Font_color_suffix} ´ú±í Ã¿ÔÂ1ÈÕ2µã0·Ö ÇåÁãÒÑÊ¹ÓÃÁ÷Á¿
- ${Green_font_prefix} 0 2 15 * * ${Font_color_suffix} ´ú±í Ã¿ÔÂ15ÈÕ2µã0·Ö ÇåÁãÒÑÊ¹ÓÃÁ÷Á¿
- ${Green_font_prefix} 0 2 */7 * * ${Font_color_suffix} ´ú±í Ã¿7Ìì2µã0·Ö ÇåÁãÒÑÊ¹ÓÃÁ÷Á¿
- ${Green_font_prefix} 0 2 * * 0 ${Font_color_suffix} ´ú±í Ã¿¸öĞÇÆÚÈÕ(7) ÇåÁãÒÑÊ¹ÓÃÁ÷Á¿
- ${Green_font_prefix} 0 2 * * 3 ${Font_color_suffix} ´ú±í Ã¿¸öĞÇÆÚÈı(3) ÇåÁãÒÑÊ¹ÓÃÁ÷Á¿" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: 0 2 1 * * Ã¿ÔÂ1ÈÕ2µã0·Ö):" Crontab_time
+		echo -e "è¯·è¾“å…¥æµé‡æ¸…é›¶æ—¶é—´é—´éš”
+ === æ ¼å¼è¯´æ˜ ===
+ * * * * * åˆ†åˆ«å¯¹åº” åˆ†é’Ÿ å°æ—¶ æ—¥ä»½ æœˆä»½ æ˜ŸæœŸ
+ ${Green_font_prefix} 0 2 1 * * ${Font_color_suffix} ä»£è¡¨ æ¯æœˆ1æ—¥2ç‚¹0åˆ† æ¸…é›¶å·²ä½¿ç”¨æµé‡
+ ${Green_font_prefix} 0 2 15 * * ${Font_color_suffix} ä»£è¡¨ æ¯æœˆ15æ—¥2ç‚¹0åˆ† æ¸…é›¶å·²ä½¿ç”¨æµé‡
+ ${Green_font_prefix} 0 2 */7 * * ${Font_color_suffix} ä»£è¡¨ æ¯7å¤©2ç‚¹0åˆ† æ¸…é›¶å·²ä½¿ç”¨æµé‡
+ ${Green_font_prefix} 0 2 * * 0 ${Font_color_suffix} ä»£è¡¨ æ¯ä¸ªæ˜ŸæœŸæ—¥(7) æ¸…é›¶å·²ä½¿ç”¨æµé‡
+ ${Green_font_prefix} 0 2 * * 3 ${Font_color_suffix} ä»£è¡¨ æ¯ä¸ªæ˜ŸæœŸä¸‰(3) æ¸…é›¶å·²ä½¿ç”¨æµé‡" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: 0 2 1 * * æ¯æœˆ1æ—¥2ç‚¹0åˆ†):" Crontab_time
 	[[ -z "${Crontab_time}" ]] && Crontab_time="0 2 1 * *"
 }
 Start_SSR(){
 	SSR_installation_status
 	check_pid
-	[[ ! -z ${PID} ]] && echo -e "${Error} ShadowsocksR ÕıÔÚÔËĞĞ !" && exit 1
+	[[ ! -z ${PID} ]] && echo -e "${Error} ShadowsocksR æ­£åœ¨è¿è¡Œ !" && exit 1
 	/etc/init.d/ssrmu start
 }
 Stop_SSR(){
 	SSR_installation_status
 	check_pid
-	[[ -z ${PID} ]] && echo -e "${Error} ShadowsocksR Î´ÔËĞĞ !" && exit 1
+	[[ -z ${PID} ]] && echo -e "${Error} ShadowsocksR æœªè¿è¡Œ !" && exit 1
 	/etc/init.d/ssrmu stop
 }
 Restart_SSR(){
@@ -1443,24 +1443,24 @@ Restart_SSR(){
 }
 View_Log(){
 	SSR_installation_status
-	[[ ! -e ${ssr_log_file} ]] && echo -e "${Error} ShadowsocksRÈÕÖ¾ÎÄ¼ş²»´æÔÚ !" && exit 1
-	echo && echo -e "${Tip} °´ ${Red_font_prefix}Ctrl+C${Font_color_suffix} ÖÕÖ¹²é¿´ÈÕÖ¾" && echo
+	[[ ! -e ${ssr_log_file} ]] && echo -e "${Error} ShadowsocksRæ—¥å¿—æ–‡ä»¶ä¸å­˜åœ¨ !" && exit 1
+	echo && echo -e "${Tip} æŒ‰ ${Red_font_prefix}Ctrl+C${Font_color_suffix} ç»ˆæ­¢æŸ¥çœ‹æ—¥å¿—" && echo
 	tail -f ${ssr_log_file}
 }
-# ÈñËÙ
+# é”é€Ÿ
 Configure_Server_Speeder(){
-	echo && echo -e "ÄãÒª×öÊ²Ã´£¿
- ${Green_font_prefix}1.${Font_color_suffix} °²×° ÈñËÙ
- ${Green_font_prefix}2.${Font_color_suffix} Ğ¶ÔØ ÈñËÙ
-¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
- ${Green_font_prefix}3.${Font_color_suffix} Æô¶¯ ÈñËÙ
- ${Green_font_prefix}4.${Font_color_suffix} Í£Ö¹ ÈñËÙ
- ${Green_font_prefix}5.${Font_color_suffix} ÖØÆô ÈñËÙ
- ${Green_font_prefix}6.${Font_color_suffix} ²é¿´ ÈñËÙ ×´Ì¬
+	echo && echo -e "ä½ è¦åšä»€ä¹ˆï¼Ÿ
+ ${Green_font_prefix}1.${Font_color_suffix} å®‰è£… é”é€Ÿ
+ ${Green_font_prefix}2.${Font_color_suffix} å¸è½½ é”é€Ÿ
+â€”â€”â€”â€”â€”â€”â€”â€”
+ ${Green_font_prefix}3.${Font_color_suffix} å¯åŠ¨ é”é€Ÿ
+ ${Green_font_prefix}4.${Font_color_suffix} åœæ­¢ é”é€Ÿ
+ ${Green_font_prefix}5.${Font_color_suffix} é‡å¯ é”é€Ÿ
+ ${Green_font_prefix}6.${Font_color_suffix} æŸ¥çœ‹ é”é€Ÿ çŠ¶æ€
  
- ×¢Òâ£º ÈñËÙºÍLotServer²»ÄÜÍ¬Ê±°²×°/Æô¶¯£¡" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: È¡Ïû):" server_speeder_num
-	[[ -z "${server_speeder_num}" ]] && echo "ÒÑÈ¡Ïû..." && exit 1
+ æ³¨æ„ï¼š é”é€Ÿå’ŒLotServerä¸èƒ½åŒæ—¶å®‰è£…/å¯åŠ¨ï¼" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: å–æ¶ˆ):" server_speeder_num
+	[[ -z "${server_speeder_num}" ]] && echo "å·²å–æ¶ˆ..." && exit 1
 	if [[ ${server_speeder_num} == "1" ]]; then
 		Install_ServerSpeeder
 	elif [[ ${server_speeder_num} == "2" ]]; then
@@ -1481,14 +1481,14 @@ Configure_Server_Speeder(){
 		Server_Speeder_installation_status
 		${Server_Speeder_file} status
 	else
-		echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-6)" && exit 1
+		echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-6)" && exit 1
 	fi
 }
 Install_ServerSpeeder(){
-	[[ -e ${Server_Speeder_file} ]] && echo -e "${Error} ÈñËÙ(Server Speeder) ÒÑ°²×° !" && exit 1
-	#½èÓÃ91yun.rogµÄ¿ªĞÄ°æÈñËÙ
+	[[ -e ${Server_Speeder_file} ]] && echo -e "${Error} é”é€Ÿ(Server Speeder) å·²å®‰è£… !" && exit 1
+	#å€Ÿç”¨91yun.rogçš„å¼€å¿ƒç‰ˆé”é€Ÿ
 	wget --no-check-certificate -qO /tmp/serverspeeder.sh https://raw.githubusercontent.com/91yun/serverspeeder/master/serverspeeder.sh
-	[[ ! -e "/tmp/serverspeeder.sh" ]] && echo -e "${Error} ÈñËÙ°²×°½Å±¾ÏÂÔØÊ§°Ü !" && exit 1
+	[[ ! -e "/tmp/serverspeeder.sh" ]] && echo -e "${Error} é”é€Ÿå®‰è£…è„šæœ¬ä¸‹è½½å¤±è´¥ !" && exit 1
 	bash /tmp/serverspeeder.sh
 	sleep 2s
 	PID=`ps -ef |grep -v grep |grep "serverspeeder" |awk '{print $2}'`
@@ -1496,35 +1496,35 @@ Install_ServerSpeeder(){
 		rm -rf /tmp/serverspeeder.sh
 		rm -rf /tmp/91yunserverspeeder
 		rm -rf /tmp/91yunserverspeeder.tar.gz
-		echo -e "${Info} ÈñËÙ(Server Speeder) °²×°Íê³É !" && exit 1
+		echo -e "${Info} é”é€Ÿ(Server Speeder) å®‰è£…å®Œæˆ !" && exit 1
 	else
-		echo -e "${Error} ÈñËÙ(Server Speeder) °²×°Ê§°Ü !" && exit 1
+		echo -e "${Error} é”é€Ÿ(Server Speeder) å®‰è£…å¤±è´¥ !" && exit 1
 	fi
 }
 Uninstall_ServerSpeeder(){
-	echo "È·¶¨ÒªĞ¶ÔØ ÈñËÙ(Server Speeder)£¿[y/N]" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: n):" unyn
-	[[ -z ${unyn} ]] && echo && echo "ÒÑÈ¡Ïû..." && exit 1
+	echo "ç¡®å®šè¦å¸è½½ é”é€Ÿ(Server Speeder)ï¼Ÿ[y/N]" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: n):" unyn
+	[[ -z ${unyn} ]] && echo && echo "å·²å–æ¶ˆ..." && exit 1
 	if [[ ${unyn} == [Yy] ]]; then
 		chattr -i /serverspeeder/etc/apx*
 		/serverspeeder/bin/serverSpeeder.sh uninstall -f
-		echo && echo "ÈñËÙ(Server Speeder) Ğ¶ÔØÍê³É !" && echo
+		echo && echo "é”é€Ÿ(Server Speeder) å¸è½½å®Œæˆ !" && echo
 	fi
 }
 # LotServer
 Configure_LotServer(){
-	echo && echo -e "ÄãÒª×öÊ²Ã´£¿
- ${Green_font_prefix}1.${Font_color_suffix} °²×° LotServer
- ${Green_font_prefix}2.${Font_color_suffix} Ğ¶ÔØ LotServer
-¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
- ${Green_font_prefix}3.${Font_color_suffix} Æô¶¯ LotServer
- ${Green_font_prefix}4.${Font_color_suffix} Í£Ö¹ LotServer
- ${Green_font_prefix}5.${Font_color_suffix} ÖØÆô LotServer
- ${Green_font_prefix}6.${Font_color_suffix} ²é¿´ LotServer ×´Ì¬
+	echo && echo -e "ä½ è¦åšä»€ä¹ˆï¼Ÿ
+ ${Green_font_prefix}1.${Font_color_suffix} å®‰è£… LotServer
+ ${Green_font_prefix}2.${Font_color_suffix} å¸è½½ LotServer
+â€”â€”â€”â€”â€”â€”â€”â€”
+ ${Green_font_prefix}3.${Font_color_suffix} å¯åŠ¨ LotServer
+ ${Green_font_prefix}4.${Font_color_suffix} åœæ­¢ LotServer
+ ${Green_font_prefix}5.${Font_color_suffix} é‡å¯ LotServer
+ ${Green_font_prefix}6.${Font_color_suffix} æŸ¥çœ‹ LotServer çŠ¶æ€
  
- ×¢Òâ£º ÈñËÙºÍLotServer²»ÄÜÍ¬Ê±°²×°/Æô¶¯£¡" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: È¡Ïû):" lotserver_num
-	[[ -z "${lotserver_num}" ]] && echo "ÒÑÈ¡Ïû..." && exit 1
+ æ³¨æ„ï¼š é”é€Ÿå’ŒLotServerä¸èƒ½åŒæ—¶å®‰è£…/å¯åŠ¨ï¼" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: å–æ¶ˆ):" lotserver_num
+	[[ -z "${lotserver_num}" ]] && echo "å·²å–æ¶ˆ..." && exit 1
 	if [[ ${lotserver_num} == "1" ]]; then
 		Install_LotServer
 	elif [[ ${lotserver_num} == "2" ]]; then
@@ -1545,47 +1545,47 @@ Configure_LotServer(){
 		LotServer_installation_status
 		${LotServer_file} status
 	else
-		echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-6)" && exit 1
+		echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-6)" && exit 1
 	fi
 }
 Install_LotServer(){
-	[[ -e ${LotServer_file} ]] && echo -e "${Error} LotServer ÒÑ°²×° !" && exit 1
+	[[ -e ${LotServer_file} ]] && echo -e "${Error} LotServer å·²å®‰è£… !" && exit 1
 	#Github: https://github.com/0oVicero0/serverSpeeder_Install
 	wget --no-check-certificate -qO /tmp/appex.sh "https://raw.githubusercontent.com/0oVicero0/serverSpeeder_Install/master/appex.sh"
-	[[ ! -e "/tmp/appex.sh" ]] && echo -e "${Error} LotServer °²×°½Å±¾ÏÂÔØÊ§°Ü !" && exit 1
+	[[ ! -e "/tmp/appex.sh" ]] && echo -e "${Error} LotServer å®‰è£…è„šæœ¬ä¸‹è½½å¤±è´¥ !" && exit 1
 	bash /tmp/appex.sh 'install'
 	sleep 2s
 	PID=`ps -ef |grep -v grep |grep "appex" |awk '{print $2}'`
 	if [[ ! -z ${PID} ]]; then
-		echo -e "${Info} LotServer °²×°Íê³É !" && exit 1
+		echo -e "${Info} LotServer å®‰è£…å®Œæˆ !" && exit 1
 	else
-		echo -e "${Error} LotServer °²×°Ê§°Ü !" && exit 1
+		echo -e "${Error} LotServer å®‰è£…å¤±è´¥ !" && exit 1
 	fi
 }
 Uninstall_LotServer(){
-	echo "È·¶¨ÒªĞ¶ÔØ LotServer£¿[y/N]" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: n):" unyn
-	[[ -z ${unyn} ]] && echo && echo "ÒÑÈ¡Ïû..." && exit 1
+	echo "ç¡®å®šè¦å¸è½½ LotServerï¼Ÿ[y/N]" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: n):" unyn
+	[[ -z ${unyn} ]] && echo && echo "å·²å–æ¶ˆ..." && exit 1
 	if [[ ${unyn} == [Yy] ]]; then
 		wget --no-check-certificate -qO /tmp/appex.sh "https://raw.githubusercontent.com/0oVicero0/serverSpeeder_Install/master/appex.sh" && bash /tmp/appex.sh 'uninstall'
-		echo && echo "LotServer Ğ¶ÔØÍê³É !" && echo
+		echo && echo "LotServer å¸è½½å®Œæˆ !" && echo
 	fi
 }
 # BBR
 Configure_BBR(){
-	echo && echo -e "  ÄãÒª×öÊ²Ã´£¿
+	echo && echo -e "  ä½ è¦åšä»€ä¹ˆï¼Ÿ
 	
- ${Green_font_prefix}1.${Font_color_suffix} °²×° BBR
-¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
- ${Green_font_prefix}2.${Font_color_suffix} Æô¶¯ BBR
- ${Green_font_prefix}3.${Font_color_suffix} Í£Ö¹ BBR
- ${Green_font_prefix}4.${Font_color_suffix} ²é¿´ BBR ×´Ì¬" && echo
-echo -e "${Green_font_prefix} [°²×°Ç° Çë×¢Òâ] ${Font_color_suffix}
-1. °²×°¿ªÆôBBR£¬ĞèÒª¸ü»»ÄÚºË£¬´æÔÚ¸ü»»Ê§°ÜµÈ·çÏÕ(ÖØÆôºóÎŞ·¨¿ª»ú)
-2. ±¾½Å±¾½öÖ§³Ö Debian / Ubuntu ÏµÍ³¸ü»»ÄÚºË£¬OpenVZºÍDocker ²»Ö§³Ö¸ü»»ÄÚºË
-3. Debian ¸ü»»ÄÚºË¹ı³ÌÖĞ»áÌáÊ¾ [ ÊÇ·ñÖÕÖ¹Ğ¶ÔØÄÚºË ] £¬ÇëÑ¡Ôñ ${Green_font_prefix} NO ${Font_color_suffix}" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: È¡Ïû):" bbr_num
-	[[ -z "${bbr_num}" ]] && echo "ÒÑÈ¡Ïû..." && exit 1
+ ${Green_font_prefix}1.${Font_color_suffix} å®‰è£… BBR
+â€”â€”â€”â€”â€”â€”â€”â€”
+ ${Green_font_prefix}2.${Font_color_suffix} å¯åŠ¨ BBR
+ ${Green_font_prefix}3.${Font_color_suffix} åœæ­¢ BBR
+ ${Green_font_prefix}4.${Font_color_suffix} æŸ¥çœ‹ BBR çŠ¶æ€" && echo
+echo -e "${Green_font_prefix} [å®‰è£…å‰ è¯·æ³¨æ„] ${Font_color_suffix}
+1. å®‰è£…å¼€å¯BBRï¼Œéœ€è¦æ›´æ¢å†…æ ¸ï¼Œå­˜åœ¨æ›´æ¢å¤±è´¥ç­‰é£é™©(é‡å¯åæ— æ³•å¼€æœº)
+2. æœ¬è„šæœ¬ä»…æ”¯æŒ Debian / Ubuntu ç³»ç»Ÿæ›´æ¢å†…æ ¸ï¼ŒOpenVZå’ŒDocker ä¸æ”¯æŒæ›´æ¢å†…æ ¸
+3. Debian æ›´æ¢å†…æ ¸è¿‡ç¨‹ä¸­ä¼šæç¤º [ æ˜¯å¦ç»ˆæ­¢å¸è½½å†…æ ¸ ] ï¼Œè¯·é€‰æ‹© ${Green_font_prefix} NO ${Font_color_suffix}" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: å–æ¶ˆ):" bbr_num
+	[[ -z "${bbr_num}" ]] && echo "å·²å–æ¶ˆ..." && exit 1
 	if [[ ${bbr_num} == "1" ]]; then
 		Install_BBR
 	elif [[ ${bbr_num} == "2" ]]; then
@@ -1595,11 +1595,11 @@ echo -e "${Green_font_prefix} [°²×°Ç° Çë×¢Òâ] ${Font_color_suffix}
 	elif [[ ${bbr_num} == "4" ]]; then
 		Status_BBR
 	else
-		echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö(1-4)" && exit 1
+		echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—(1-4)" && exit 1
 	fi
 }
 Install_BBR(){
-	[[ ${release} = "centos" ]] && echo -e "${Error} ±¾½Å±¾²»Ö§³Ö CentOSÏµÍ³°²×° BBR !" && exit 1
+	[[ ${release} = "centos" ]] && echo -e "${Error} æœ¬è„šæœ¬ä¸æ”¯æŒ CentOSç³»ç»Ÿå®‰è£… BBR !" && exit 1
 	BBR_installation_status
 	bash "${BBR_file}"
 }
@@ -1615,25 +1615,25 @@ Status_BBR(){
 	BBR_installation_status
 	bash "${BBR_file}" status
 }
-# ÆäËû¹¦ÄÜ
+# å…¶ä»–åŠŸèƒ½
 Other_functions(){
-	echo && echo -e "  ÄãÒª×öÊ²Ã´£¿
+	echo && echo -e "  ä½ è¦åšä»€ä¹ˆï¼Ÿ
 	
-  ${Green_font_prefix}1.${Font_color_suffix} ÅäÖÃ BBR
-  ${Green_font_prefix}2.${Font_color_suffix} ÅäÖÃ ÈñËÙ(ServerSpeeder)
-  ${Green_font_prefix}3.${Font_color_suffix} ÅäÖÃ LotServer(ÈñËÙÄ¸¹«Ë¾)
-  ${Tip} ÈñËÙ/LotServer/BBR ²»Ö§³Ö OpenVZ£¡
-  ${Tip} ÈñËÙºÍLotServer²»ÄÜ¹²´æ£¡
-¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
-  ${Green_font_prefix}4.${Font_color_suffix} Ò»¼ü·â½û BT/PT/SPAM (iptables)
-  ${Green_font_prefix}5.${Font_color_suffix} Ò»¼ü½â·â BT/PT/SPAM (iptables)
-¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
-  ${Green_font_prefix}6.${Font_color_suffix} ÇĞ»» ShadowsocksRÈÕÖ¾Êä³öÄ£Ê½
-  ¡ª¡ª ËµÃ÷£ºSSRÄ¬ÈÏÖ»Êä³ö´íÎóÈÕÖ¾£¬´ËÏî¿ÉÇĞ»»ÎªÊä³öÏêÏ¸µÄ·ÃÎÊÈÕÖ¾¡£
-  ${Green_font_prefix}7.${Font_color_suffix} ¼à¿Ø ShadowsocksR·şÎñ¶ËÔËĞĞ×´Ì¬
-  ¡ª¡ª ËµÃ÷£º¸Ã¹¦ÄÜÊÊºÏÓÚSSR·şÎñ¶Ë¾­³£½ø³Ì½áÊø£¬Æô¶¯¸Ã¹¦ÄÜºó»áÃ¿·ÖÖÓ¼ì²âÒ»´Î£¬µ±½ø³Ì²»´æÔÚÔò×Ô¶¯Æô¶¯SSR·şÎñ¶Ë¡£" && echo
-	stty erase '^H' && read -p "(Ä¬ÈÏ: È¡Ïû):" other_num
-	[[ -z "${other_num}" ]] && echo "ÒÑÈ¡Ïû..." && exit 1
+  ${Green_font_prefix}1.${Font_color_suffix} é…ç½® BBR
+  ${Green_font_prefix}2.${Font_color_suffix} é…ç½® é”é€Ÿ(ServerSpeeder)
+  ${Green_font_prefix}3.${Font_color_suffix} é…ç½® LotServer(é”é€Ÿæ¯å…¬å¸)
+  ${Tip} é”é€Ÿ/LotServer/BBR ä¸æ”¯æŒ OpenVZï¼
+  ${Tip} é”é€Ÿå’ŒLotServerä¸èƒ½å…±å­˜ï¼
+â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
+  ${Green_font_prefix}4.${Font_color_suffix} ä¸€é”®å°ç¦ BT/PT/SPAM (iptables)
+  ${Green_font_prefix}5.${Font_color_suffix} ä¸€é”®è§£å° BT/PT/SPAM (iptables)
+â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
+  ${Green_font_prefix}6.${Font_color_suffix} åˆ‡æ¢ ShadowsocksRæ—¥å¿—è¾“å‡ºæ¨¡å¼
+  â€”â€” è¯´æ˜ï¼šSSRé»˜è®¤åªè¾“å‡ºé”™è¯¯æ—¥å¿—ï¼Œæ­¤é¡¹å¯åˆ‡æ¢ä¸ºè¾“å‡ºè¯¦ç»†çš„è®¿é—®æ—¥å¿—ã€‚
+  ${Green_font_prefix}7.${Font_color_suffix} ç›‘æ§ ShadowsocksRæœåŠ¡ç«¯è¿è¡ŒçŠ¶æ€
+  â€”â€” è¯´æ˜ï¼šè¯¥åŠŸèƒ½é€‚åˆäºSSRæœåŠ¡ç«¯ç»å¸¸è¿›ç¨‹ç»“æŸï¼Œå¯åŠ¨è¯¥åŠŸèƒ½åä¼šæ¯åˆ†é’Ÿæ£€æµ‹ä¸€æ¬¡ï¼Œå½“è¿›ç¨‹ä¸å­˜åœ¨åˆ™è‡ªåŠ¨å¯åŠ¨SSRæœåŠ¡ç«¯ã€‚" && echo
+	stty erase '^H' && read -p "(é»˜è®¤: å–æ¶ˆ):" other_num
+	[[ -z "${other_num}" ]] && echo "å·²å–æ¶ˆ..." && exit 1
 	if [[ ${other_num} == "1" ]]; then
 		Configure_BBR
 	elif [[ ${other_num} == "2" ]]; then
@@ -1649,46 +1649,46 @@ Other_functions(){
 	elif [[ ${other_num} == "7" ]]; then
 		Set_crontab_monitor_ssr
 	else
-		echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö [1-7]" && exit 1
+		echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­— [1-7]" && exit 1
 	fi
 }
-# ·â½û BT PT SPAM
+# å°ç¦ BT PT SPAM
 BanBTPTSPAM(){
 	wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ban_iptables.sh && chmod +x ban_iptables.sh && bash ban_iptables.sh banall
 	rm -rf ban_iptables.sh
 }
-# ½â·â BT PT SPAM
+# è§£å° BT PT SPAM
 UnBanBTPTSPAM(){
 	wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ban_iptables.sh && chmod +x ban_iptables.sh && bash ban_iptables.sh unbanall
 	rm -rf ban_iptables.sh
 }
 Set_config_connect_verbose_info(){
 	SSR_installation_status
-	[[ ! -e ${jq_file} ]] && echo -e "${Error} JQ½âÎöÆ÷ ²»´æÔÚ£¬Çë¼ì²é !" && exit 1
+	[[ ! -e ${jq_file} ]] && echo -e "${Error} JQè§£æå™¨ ä¸å­˜åœ¨ï¼Œè¯·æ£€æŸ¥ !" && exit 1
 	connect_verbose_info=`${jq_file} '.connect_verbose_info' ${config_user_file}`
 	if [[ ${connect_verbose_info} = "0" ]]; then
-		echo && echo -e "µ±Ç°ÈÕÖ¾Ä£Ê½: ${Green_font_prefix}¼òµ¥Ä£Ê½£¨Ö»Êä³ö´íÎóÈÕÖ¾£©${Font_color_suffix}" && echo
-		echo -e "È·¶¨ÒªÇĞ»»Îª ${Green_font_prefix}ÏêÏ¸Ä£Ê½£¨Êä³öÏêÏ¸Á¬½ÓÈÕÖ¾+´íÎóÈÕÖ¾£©${Font_color_suffix}£¿[y/N]"
-		stty erase '^H' && read -p "(Ä¬ÈÏ: n):" connect_verbose_info_ny
+		echo && echo -e "å½“å‰æ—¥å¿—æ¨¡å¼: ${Green_font_prefix}ç®€å•æ¨¡å¼ï¼ˆåªè¾“å‡ºé”™è¯¯æ—¥å¿—ï¼‰${Font_color_suffix}" && echo
+		echo -e "ç¡®å®šè¦åˆ‡æ¢ä¸º ${Green_font_prefix}è¯¦ç»†æ¨¡å¼ï¼ˆè¾“å‡ºè¯¦ç»†è¿æ¥æ—¥å¿—+é”™è¯¯æ—¥å¿—ï¼‰${Font_color_suffix}ï¼Ÿ[y/N]"
+		stty erase '^H' && read -p "(é»˜è®¤: n):" connect_verbose_info_ny
 		[[ -z "${connect_verbose_info_ny}" ]] && connect_verbose_info_ny="n"
 		if [[ ${connect_verbose_info_ny} == [Yy] ]]; then
 			ssr_connect_verbose_info="1"
 			Modify_config_connect_verbose_info
 			Restart_SSR
 		else
-			echo && echo "	ÒÑÈ¡Ïû..." && echo
+			echo && echo "	å·²å–æ¶ˆ..." && echo
 		fi
 	else
-		echo && echo -e "µ±Ç°ÈÕÖ¾Ä£Ê½: ${Green_font_prefix}ÏêÏ¸Ä£Ê½£¨Êä³öÏêÏ¸Á¬½ÓÈÕÖ¾+´íÎóÈÕÖ¾£©${Font_color_suffix}" && echo
-		echo -e "È·¶¨ÒªÇĞ»»Îª ${Green_font_prefix}¼òµ¥Ä£Ê½£¨Ö»Êä³ö´íÎóÈÕÖ¾£©${Font_color_suffix}£¿[y/N]"
-		stty erase '^H' && read -p "(Ä¬ÈÏ: n):" connect_verbose_info_ny
+		echo && echo -e "å½“å‰æ—¥å¿—æ¨¡å¼: ${Green_font_prefix}è¯¦ç»†æ¨¡å¼ï¼ˆè¾“å‡ºè¯¦ç»†è¿æ¥æ—¥å¿—+é”™è¯¯æ—¥å¿—ï¼‰${Font_color_suffix}" && echo
+		echo -e "ç¡®å®šè¦åˆ‡æ¢ä¸º ${Green_font_prefix}ç®€å•æ¨¡å¼ï¼ˆåªè¾“å‡ºé”™è¯¯æ—¥å¿—ï¼‰${Font_color_suffix}ï¼Ÿ[y/N]"
+		stty erase '^H' && read -p "(é»˜è®¤: n):" connect_verbose_info_ny
 		[[ -z "${connect_verbose_info_ny}" ]] && connect_verbose_info_ny="n"
 		if [[ ${connect_verbose_info_ny} == [Yy] ]]; then
 			ssr_connect_verbose_info="0"
 			Modify_config_connect_verbose_info
 			Restart_SSR
 		else
-			echo && echo "	ÒÑÈ¡Ïû..." && echo
+			echo && echo "	å·²å–æ¶ˆ..." && echo
 		fi
 	fi
 }
@@ -1696,24 +1696,24 @@ Set_crontab_monitor_ssr(){
 	SSR_installation_status
 	crontab_monitor_ssr_status=$(crontab -l|grep "ssrmu.sh monitor")
 	if [[ -z "${crontab_monitor_ssr_status}" ]]; then
-		echo && echo -e "µ±Ç°¼à¿ØÄ£Ê½: ${Green_font_prefix}Î´¿ªÆô${Font_color_suffix}" && echo
-		echo -e "È·¶¨Òª¿ªÆôÎª ${Green_font_prefix}ShadowsocksR·şÎñ¶ËÔËĞĞ×´Ì¬¼à¿Ø${Font_color_suffix} ¹¦ÄÜÂğ£¿(µ±½ø³Ì¹Ø±ÕÔò×Ô¶¯Æô¶¯SSR·şÎñ¶Ë)[Y/n]"
-		stty erase '^H' && read -p "(Ä¬ÈÏ: y):" crontab_monitor_ssr_status_ny
+		echo && echo -e "å½“å‰ç›‘æ§æ¨¡å¼: ${Green_font_prefix}æœªå¼€å¯${Font_color_suffix}" && echo
+		echo -e "ç¡®å®šè¦å¼€å¯ä¸º ${Green_font_prefix}ShadowsocksRæœåŠ¡ç«¯è¿è¡ŒçŠ¶æ€ç›‘æ§${Font_color_suffix} åŠŸèƒ½å—ï¼Ÿ(å½“è¿›ç¨‹å…³é—­åˆ™è‡ªåŠ¨å¯åŠ¨SSRæœåŠ¡ç«¯)[Y/n]"
+		stty erase '^H' && read -p "(é»˜è®¤: y):" crontab_monitor_ssr_status_ny
 		[[ -z "${crontab_monitor_ssr_status_ny}" ]] && crontab_monitor_ssr_status_ny="y"
 		if [[ ${crontab_monitor_ssr_status_ny} == [Yy] ]]; then
 			crontab_monitor_ssr_cron_start
 		else
-			echo && echo "	ÒÑÈ¡Ïû..." && echo
+			echo && echo "	å·²å–æ¶ˆ..." && echo
 		fi
 	else
-		echo && echo -e "µ±Ç°¼à¿ØÄ£Ê½: ${Green_font_prefix}ÒÑ¿ªÆô${Font_color_suffix}" && echo
-		echo -e "È·¶¨Òª¹Ø±ÕÎª ${Green_font_prefix}ShadowsocksR·şÎñ¶ËÔËĞĞ×´Ì¬¼à¿Ø${Font_color_suffix} ¹¦ÄÜÂğ£¿(µ±½ø³Ì¹Ø±ÕÔò×Ô¶¯Æô¶¯SSR·şÎñ¶Ë)[y/N]"
-		stty erase '^H' && read -p "(Ä¬ÈÏ: n):" crontab_monitor_ssr_status_ny
+		echo && echo -e "å½“å‰ç›‘æ§æ¨¡å¼: ${Green_font_prefix}å·²å¼€å¯${Font_color_suffix}" && echo
+		echo -e "ç¡®å®šè¦å…³é—­ä¸º ${Green_font_prefix}ShadowsocksRæœåŠ¡ç«¯è¿è¡ŒçŠ¶æ€ç›‘æ§${Font_color_suffix} åŠŸèƒ½å—ï¼Ÿ(å½“è¿›ç¨‹å…³é—­åˆ™è‡ªåŠ¨å¯åŠ¨SSRæœåŠ¡ç«¯)[y/N]"
+		stty erase '^H' && read -p "(é»˜è®¤: n):" crontab_monitor_ssr_status_ny
 		[[ -z "${crontab_monitor_ssr_status_ny}" ]] && crontab_monitor_ssr_status_ny="n"
 		if [[ ${crontab_monitor_ssr_status_ny} == [Yy] ]]; then
 			crontab_monitor_ssr_cron_stop
 		else
-			echo && echo "	ÒÑÈ¡Ïû..." && echo
+			echo && echo "	å·²å–æ¶ˆ..." && echo
 		fi
 	fi
 }
@@ -1721,17 +1721,17 @@ crontab_monitor_ssr(){
 	SSR_installation_status
 	check_pid
 	if [[ -z ${PID} ]]; then
-		echo -e "${Error} [$(date "+%Y-%m-%d %H:%M:%S %u %Z")] ¼ì²âµ½ ShadowsocksR·şÎñ¶Ë Î´ÔËĞĞ , ¿ªÊ¼Æô¶¯..." | tee -a ${ssr_log_file}
+		echo -e "${Error} [$(date "+%Y-%m-%d %H:%M:%S %u %Z")] æ£€æµ‹åˆ° ShadowsocksRæœåŠ¡ç«¯ æœªè¿è¡Œ , å¼€å§‹å¯åŠ¨..." | tee -a ${ssr_log_file}
 		/etc/init.d/ssrmu start
 		sleep 1s
 		check_pid
 		if [[ -z ${PID} ]]; then
-			echo -e "${Error} [$(date "+%Y-%m-%d %H:%M:%S %u %Z")] ShadowsocksR·şÎñ¶Ë Æô¶¯Ê§°Ü..." | tee -a ${ssr_log_file} && exit 1
+			echo -e "${Error} [$(date "+%Y-%m-%d %H:%M:%S %u %Z")] ShadowsocksRæœåŠ¡ç«¯ å¯åŠ¨å¤±è´¥..." | tee -a ${ssr_log_file} && exit 1
 		else
-			echo -e "${Info} [$(date "+%Y-%m-%d %H:%M:%S %u %Z")] ShadowsocksR·şÎñ¶Ë Æô¶¯³É¹¦..." | tee -a ${ssr_log_file} && exit 1
+			echo -e "${Info} [$(date "+%Y-%m-%d %H:%M:%S %u %Z")] ShadowsocksRæœåŠ¡ç«¯ å¯åŠ¨æˆåŠŸ..." | tee -a ${ssr_log_file} && exit 1
 		fi
 	else
-		echo -e "${Info} [$(date "+%Y-%m-%d %H:%M:%S %u %Z")] ShadowsocksR·şÎñ¶Ë ½ø³ÌÔËĞĞÕı³£..." exit 0
+		echo -e "${Info} [$(date "+%Y-%m-%d %H:%M:%S %u %Z")] ShadowsocksRæœåŠ¡ç«¯ è¿›ç¨‹è¿è¡Œæ­£å¸¸..." exit 0
 	fi
 }
 crontab_monitor_ssr_cron_start(){
@@ -1742,9 +1742,9 @@ crontab_monitor_ssr_cron_start(){
 	rm -r "$file/crontab.bak"
 	cron_config=$(crontab -l | grep "ssrmu.sh monitor")
 	if [[ -z ${cron_config} ]]; then
-		echo -e "${Error} ShadowsocksR·şÎñ¶ËÔËĞĞ×´Ì¬¼à¿Ø¹¦ÄÜ Æô¶¯Ê§°Ü !" && exit 1
+		echo -e "${Error} ShadowsocksRæœåŠ¡ç«¯è¿è¡ŒçŠ¶æ€ç›‘æ§åŠŸèƒ½ å¯åŠ¨å¤±è´¥ !" && exit 1
 	else
-		echo -e "${Info} ShadowsocksR·şÎñ¶ËÔËĞĞ×´Ì¬¼à¿Ø¹¦ÄÜ Æô¶¯³É¹¦ !"
+		echo -e "${Info} ShadowsocksRæœåŠ¡ç«¯è¿è¡ŒçŠ¶æ€ç›‘æ§åŠŸèƒ½ å¯åŠ¨æˆåŠŸ !"
 	fi
 }
 crontab_monitor_ssr_cron_stop(){
@@ -1754,19 +1754,19 @@ crontab_monitor_ssr_cron_stop(){
 	rm -r "$file/crontab.bak"
 	cron_config=$(crontab -l | grep "ssrmu.sh monitor")
 	if [[ ! -z ${cron_config} ]]; then
-		echo -e "${Error} ShadowsocksR·şÎñ¶ËÔËĞĞ×´Ì¬¼à¿Ø¹¦ÄÜ Í£Ö¹Ê§°Ü !" && exit 1
+		echo -e "${Error} ShadowsocksRæœåŠ¡ç«¯è¿è¡ŒçŠ¶æ€ç›‘æ§åŠŸèƒ½ åœæ­¢å¤±è´¥ !" && exit 1
 	else
-		echo -e "${Info} ShadowsocksR·şÎñ¶ËÔËĞĞ×´Ì¬¼à¿Ø¹¦ÄÜ Í£Ö¹³É¹¦ !"
+		echo -e "${Info} ShadowsocksRæœåŠ¡ç«¯è¿è¡ŒçŠ¶æ€ç›‘æ§åŠŸèƒ½ åœæ­¢æˆåŠŸ !"
 	fi
 }
 Update_Shell(){
-	echo -e "µ±Ç°°æ±¾Îª [ ${sh_ver} ]£¬¿ªÊ¼¼ì²â×îĞÂ°æ±¾..."
+	echo -e "å½“å‰ç‰ˆæœ¬ä¸º [ ${sh_ver} ]ï¼Œå¼€å§‹æ£€æµ‹æœ€æ–°ç‰ˆæœ¬..."
 	sh_new_ver=$(wget --no-check-certificate -qO- "https://softs.fun/Bash/ssrmu.sh"|grep 'sh_ver="'|awk -F "=" '{print $NF}'|sed 's/\"//g'|head -1) && sh_new_type="softs"
 	[[ -z ${sh_new_ver} ]] && sh_new_ver=$(wget --no-check-certificate -qO- "https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh"|grep 'sh_ver="'|awk -F "=" '{print $NF}'|sed 's/\"//g'|head -1) && sh_new_type="github"
-	[[ -z ${sh_new_ver} ]] && echo -e "${Error} ¼ì²â×îĞÂ°æ±¾Ê§°Ü !" && exit 0
+	[[ -z ${sh_new_ver} ]] && echo -e "${Error} æ£€æµ‹æœ€æ–°ç‰ˆæœ¬å¤±è´¥ !" && exit 0
 	if [[ ${sh_new_ver} != ${sh_ver} ]]; then
-		echo -e "·¢ÏÖĞÂ°æ±¾[ ${sh_new_ver} ]£¬ÊÇ·ñ¸üĞÂ£¿[Y/n]"
-		stty erase '^H' && read -p "(Ä¬ÈÏ: y):" yn
+		echo -e "å‘ç°æ–°ç‰ˆæœ¬[ ${sh_new_ver} ]ï¼Œæ˜¯å¦æ›´æ–°ï¼Ÿ[Y/n]"
+		stty erase '^H' && read -p "(é»˜è®¤: y):" yn
 		[[ -z "${yn}" ]] && yn="y"
 		if [[ ${yn} == [Yy] ]]; then
 			cd "${file}"
@@ -1775,61 +1775,61 @@ Update_Shell(){
 			else
 				wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh && chmod +x ssrmu.sh
 			fi
-			echo -e "½Å±¾ÒÑ¸üĞÂÎª×îĞÂ°æ±¾[ ${sh_new_ver} ] !"
+			echo -e "è„šæœ¬å·²æ›´æ–°ä¸ºæœ€æ–°ç‰ˆæœ¬[ ${sh_new_ver} ] !"
 		else
-			echo && echo "	ÒÑÈ¡Ïû..." && echo
+			echo && echo "	å·²å–æ¶ˆ..." && echo
 		fi
 	else
-		echo -e "µ±Ç°ÒÑÊÇ×îĞÂ°æ±¾[ ${sh_new_ver} ] !"
+		echo -e "å½“å‰å·²æ˜¯æœ€æ–°ç‰ˆæœ¬[ ${sh_new_ver} ] !"
 	fi
 	exit 0
 }
-# ÏÔÊ¾ ²Ëµ¥×´Ì¬
+# æ˜¾ç¤º èœå•çŠ¶æ€
 menu_status(){
 	if [[ -e ${ssr_folder} ]]; then
 		check_pid
 		if [[ ! -z "${PID}" ]]; then
-			echo -e " µ±Ç°×´Ì¬: ${Green_font_prefix}ÒÑ°²×°${Font_color_suffix} ²¢ ${Green_font_prefix}ÒÑÆô¶¯${Font_color_suffix}"
+			echo -e " å½“å‰çŠ¶æ€: ${Green_font_prefix}å·²å®‰è£…${Font_color_suffix} å¹¶ ${Green_font_prefix}å·²å¯åŠ¨${Font_color_suffix}"
 		else
-			echo -e " µ±Ç°×´Ì¬: ${Green_font_prefix}ÒÑ°²×°${Font_color_suffix} µ« ${Red_font_prefix}Î´Æô¶¯${Font_color_suffix}"
+			echo -e " å½“å‰çŠ¶æ€: ${Green_font_prefix}å·²å®‰è£…${Font_color_suffix} ä½† ${Red_font_prefix}æœªå¯åŠ¨${Font_color_suffix}"
 		fi
 		cd "${ssr_folder}"
 	else
-		echo -e " µ±Ç°×´Ì¬: ${Red_font_prefix}Î´°²×°${Font_color_suffix}"
+		echo -e " å½“å‰çŠ¶æ€: ${Red_font_prefix}æœªå®‰è£…${Font_color_suffix}"
 	fi
 }
 check_sys
-[[ ${release} != "debian" ]] && [[ ${release} != "ubuntu" ]] && [[ ${release} != "centos" ]] && echo -e "${Error} ±¾½Å±¾²»Ö§³Öµ±Ç°ÏµÍ³ ${release} !" && exit 1
+[[ ${release} != "debian" ]] && [[ ${release} != "ubuntu" ]] && [[ ${release} != "centos" ]] && echo -e "${Error} æœ¬è„šæœ¬ä¸æ”¯æŒå½“å‰ç³»ç»Ÿ ${release} !" && exit 1
 action=$1
 if [[ "${action}" == "clearall" ]]; then
 	Clear_transfer_all
 elif [[ "${action}" == "monitor" ]]; then
 	crontab_monitor_ssr
 else
-	echo -e "  ShadowsocksR MuJSONÒ»¼ü¹ÜÀí½Å±¾ ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}
+	echo -e "  ShadowsocksR MuJSONä¸€é”®ç®¡ç†è„šæœ¬ ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}
   ---- Toyo | doub.io/ss-jc60 ----
 
-  ${Green_font_prefix}1.${Font_color_suffix} °²×° ShadowsocksR
-  ${Green_font_prefix}2.${Font_color_suffix} ¸üĞÂ ShadowsocksR
-  ${Green_font_prefix}3.${Font_color_suffix} Ğ¶ÔØ ShadowsocksR
-  ${Green_font_prefix}4.${Font_color_suffix} °²×° libsodium(chacha20)
-¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
-  ${Green_font_prefix}5.${Font_color_suffix} ²é¿´ ÕËºÅĞÅÏ¢
-  ${Green_font_prefix}6.${Font_color_suffix} ÏÔÊ¾ Á¬½ÓĞÅÏ¢
-  ${Green_font_prefix}7.${Font_color_suffix} ÉèÖÃ ÓÃ»§ÅäÖÃ
-  ${Green_font_prefix}8.${Font_color_suffix} ÊÖ¶¯ ĞŞ¸ÄÅäÖÃ
-  ${Green_font_prefix}9.${Font_color_suffix} ÇåÁã ÒÑÓÃÁ÷Á¿
-¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
- ${Green_font_prefix}10.${Font_color_suffix} Æô¶¯ ShadowsocksR
- ${Green_font_prefix}11.${Font_color_suffix} Í£Ö¹ ShadowsocksR
- ${Green_font_prefix}12.${Font_color_suffix} ÖØÆô ShadowsocksR
- ${Green_font_prefix}13.${Font_color_suffix} ²é¿´ ShadowsocksR ÈÕÖ¾
-¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
- ${Green_font_prefix}14.${Font_color_suffix} ÆäËû¹¦ÄÜ
- ${Green_font_prefix}15.${Font_color_suffix} Éı¼¶½Å±¾
+  ${Green_font_prefix}1.${Font_color_suffix} å®‰è£… ShadowsocksR
+  ${Green_font_prefix}2.${Font_color_suffix} æ›´æ–° ShadowsocksR
+  ${Green_font_prefix}3.${Font_color_suffix} å¸è½½ ShadowsocksR
+  ${Green_font_prefix}4.${Font_color_suffix} å®‰è£… libsodium(chacha20)
+â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
+  ${Green_font_prefix}5.${Font_color_suffix} æŸ¥çœ‹ è´¦å·ä¿¡æ¯
+  ${Green_font_prefix}6.${Font_color_suffix} æ˜¾ç¤º è¿æ¥ä¿¡æ¯
+  ${Green_font_prefix}7.${Font_color_suffix} è®¾ç½® ç”¨æˆ·é…ç½®
+  ${Green_font_prefix}8.${Font_color_suffix} æ‰‹åŠ¨ ä¿®æ”¹é…ç½®
+  ${Green_font_prefix}9.${Font_color_suffix} æ¸…é›¶ å·²ç”¨æµé‡
+â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
+ ${Green_font_prefix}10.${Font_color_suffix} å¯åŠ¨ ShadowsocksR
+ ${Green_font_prefix}11.${Font_color_suffix} åœæ­¢ ShadowsocksR
+ ${Green_font_prefix}12.${Font_color_suffix} é‡å¯ ShadowsocksR
+ ${Green_font_prefix}13.${Font_color_suffix} æŸ¥çœ‹ ShadowsocksR æ—¥å¿—
+â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
+ ${Green_font_prefix}14.${Font_color_suffix} å…¶ä»–åŠŸèƒ½
+ ${Green_font_prefix}15.${Font_color_suffix} å‡çº§è„šæœ¬
  "
 	menu_status
-	echo && stty erase '^H' && read -p "ÇëÊäÈëÊı×Ö [1-15]£º" num
+	echo && stty erase '^H' && read -p "è¯·è¾“å…¥æ•°å­— [1-15]ï¼š" num
 case "$num" in
 	1)
 	Install_SSR
@@ -1877,7 +1877,7 @@ case "$num" in
 	Update_Shell
 	;;
 	*)
-	echo -e "${Error} ÇëÊäÈëÕıÈ·µÄÊı×Ö [1-15]"
+	echo -e "${Error} è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­— [1-15]"
 	;;
 esac
 fi
